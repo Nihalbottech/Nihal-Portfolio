@@ -11,6 +11,7 @@ import resumePdf from '../assets/Resume/Mohammed_Nihal_Final_Resume.pdf';
 
 const Hero = () => {
   const heroData = contentData.hero;
+  const displayProfileImg = heroData.profileImgUrl || profileImg;
 
   return (
     <section id="hero" className="relative min-h-[90vh] flex items-center pt-20 overflow-hidden z-10 bg-background border-b border-borderLine">
@@ -170,7 +171,7 @@ const Hero = () => {
               <motion.img 
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.6 }}
-                src={profileImg} 
+                src={displayProfileImg} 
                 alt="Mohammed Nihal M"
                 className="w-full h-full object-cover object-top"
               />
