@@ -1,0 +1,230 @@
+{
+  "hero": {
+    "firstName": "Mohammed",
+    "lastName": "Nihal M",
+    "titles": "Robotics Intern\nSTEM Educator",
+    "description": "Designing intelligent systems and training future innovators."
+  },
+  "projects": [
+    {
+      "src": "/assets/Projects/WhatsApp Video 2026-04-18 at 11.27.30 AM.mp4",
+      "videoSrc": "/assets/Projects/WhatsApp Video 2026-04-18 at 11.27.30 AM.mp4",
+      "images": null,
+      "extraImages": ["/assets/Projects/1758561548814.jpg"],
+      "title": "Robotic Dog",
+      "date": "Jun 2025 – Jul 2025",
+      "association": "Associated with Technical Higher Secondary School Perinthalmanna",
+      "quote": "Robots can move, play, and even feel. This Robotic Dog shows that!",
+      "description": "I created a Robotic Dog that walks, responds to touch, and can be controlled with a custom joystick. It's an enjoyable mix of mechanics, electronics, and creativity."
+    },
+    {
+      "src": "/assets/Projects/1758559081994.jpg",
+      "images": ["/assets/Projects/1758559081994.jpg", "/assets/Projects/1758559113593.jpg"],
+      "title": "Joystick Controller for My Robot Dog",
+      "date": "Jun 2025 – Jul 2025",
+      "association": "Associated with Technical Higher Secondary School Perinthalmanna",
+      "quote": "Why settle for basic controls? I built my own PS5-style joystick for my Robot Dog.",
+      "description": "To make my Robot Dog more interactive and enjoyable to control, I built a PS5-style joystick controller using Arduino and wireless communication."
+    },
+    {
+      "src": "/assets/Projects/wild.jpg",
+      "images": ["/assets/Projects/wild.jpg"],
+      "title": "Wild Animal Attack Monitoring System (Prototype)",
+      "date": "Sep 2025 – Sep 2025",
+      "quote": "A step toward wildlife safety, combining AI vision and IoT for protection.",
+      "description": "This prototype detects animal movement near human settlements or forest borders and sends real-time alerts. It uses the ESP32 as the main controller with a HuskyLens AI camera to identify objects and track motion, while SIM900A GSM and Neo-6M GPS modules transmit important data instantly."
+    },
+    {
+      "src": "/assets/Projects/robotic arm.jpg",
+      "images": ["/assets/Projects/robotic arm.jpg"],
+      "title": "3D Printed Robotic Arm",
+      "date": "Apr 2025 – Apr 2025",
+      "association": "Associated with Technical Higher Secondary School Perinthalmanna",
+      "quote": "Bringing together electronics, mechanics, and programming into one robotic arm.",
+      "description": "I built a robotic arm using Arduino, servo motors, and 3D-printed parts. This project brings together my interests in electronics, mechanics, and programming. The arm can pick and place small objects, be controlled precisely through Arduino, and show how robotics can be used in automation and education."
+    },
+    { 
+      "src": "/assets/Projects/1.jpg",
+      "images": ["/assets/Projects/1.jpg", "/assets/Projects/1.1.jpg", "/assets/Projects/1.2.jpeg"],
+      "title": "BPM (Heart Rate) Monitoring System",
+      "date": "Nov 2025 – Nov 2025",
+      "quote": "When electronics meet healthcare, monitoring becomes simple, smart, and stylish.",
+      "description": "This project features a BPM (Beats Per Minute) Monitoring System created with Arduino and a pulse sensor, housed in a custom 3D-printed heart-shaped case. The case is fully customizable and can be found on Thingiverse, allowing anyone to print, assemble, and use it."
+    },
+    { 
+      "src": "/assets/Projects/2.jpg",
+      "images": ["/assets/Projects/2.jpg", "/assets/Projects/2.2.jpg", "/assets/Projects/2.1.jpg"],
+      "title": "Smart Acid Rain Prediction System",
+      "date": "Nov 2025 – Nov 2025",
+      "quote": "Detecting danger before it reaches the ground, blending environmental science with electronics.",
+      "description": "This project is a Smart Acid Rain Prediction System designed to monitor atmospheric gases and predict the early formation of acid rain. By measuring pollutants like SO₂ and NO₂, along with temperature and humidity, the system calculates a risk score and displays alerts in real time."
+    },
+    {
+      "src": "/assets/Projects/alexaa.jpg",
+      "images": ["/assets/Projects/alexaa.jpg"],
+      "title": "DIY Alexa – Voice Controlled Home Automation",
+      "date": "Nov 2023 – Nov 2023",
+      "quote": "Built my own Alexa from scratch — voice commands, custom PCB, and full home control.",
+      "description": "This project is a DIY Alexa-style system built completely from scratch using Arduino Nano and DFRobot's voice recognition module. The system can recognize and respond to voice commands to control different home appliances — all through a custom PCB I designed myself!"
+    },
+    {
+      "src": "/assets/Projects/smaart.jpg",
+      "images": ["/assets/Projects/smaart.jpg"],
+      "title": "Smart Height Measurement System",
+      "date": "Jan 2023 – Jan 2023",
+      "association": "Associated with Technical Higher Secondary School Perinthalmanna",
+      "quote": "Combining electronics with practical problem-solving — a smart height finder.",
+      "description": "As part of my journey in combining electronics with practical problem-solving, I built a Height Finder System using Arduino and sensors. This project was designed to measure a person's height quickly and display it on an LCD screen."
+    },
+    {
+      "src": "/assets/Projects/ldr.jpg",
+      "images": ["/assets/Projects/ldr.jpg"],
+      "title": "Custom LDR Sensor Module",
+      "date": "Sep 2024 – Sep 2024",
+      "quote": "From schematic to PCB — a custom light sensor module built from scratch.",
+      "description": "In this project, I designed and built a Light Dependent Resistor (LDR) sensor module using an LM358 operational amplifier — complete with a custom PCB that I designed and printed myself!"
+    },
+    {
+      "src": "/assets/Projects/otto.jpg",
+      "images": ["/assets/Projects/otto.jpg"],
+      "title": "Otto Robot",
+      "date": "Apr 2024 – Apr 2024",
+      "association": "Associated with Technical Higher Secondary School Perinthalmanna",
+      "quote": "A small but powerful walking robot — meet Otto!",
+      "description": "Meet Otto Robot, a fun and interactive robot built using Arduino, 3D-printed parts, and servo motors. Otto is a small but powerful walking robot that can walk and dance with pre-programmed movements, respond to basic interactions, and serve as a great STEM learning tool for kids and beginners in robotics."
+    },
+    {
+      "src": "/assets/Projects/robo csae.jpg",
+      "images": ["/assets/Projects/robo csae.jpg"],
+      "title": "Robo Race Robot",
+      "date": "Feb 2023 – Feb 2023",
+      "quote": "Speed, agility, and precision — built to compete.",
+      "description": "For this project, I built a high-speed Robo Race robot designed for agility and quick decision-making on complex tracks. It was built to compete in robotics competitions where performance, balance, and control matter most."
+    },
+    {
+      "src": "/assets/Projects/ar.jpg",
+      "images": ["/assets/Projects/ar.jpg", "/assets/Projects/aar1.jpg", "/assets/Projects/ar2.jpg"],
+      "title": "Arduino Uno Protective Case",
+      "date": "Aug 2025 – Aug 2025",
+      "quote": "3D-printed protection for your Arduino — functional, clean, and fully accessible.",
+      "description": "A simple and functional 3D-printed case for the Arduino Uno, designed to protect the board while keeping all pins, USB, and power ports easily accessible."
+    },
+    {
+      "src": "/assets/Projects/ca.jpg",
+      "images": ["/assets/Projects/ca.jpg", "/assets/Projects/cas.jpg", "/assets/Projects/case.jpg"],
+      "title": "HuskyLens Protective Case",
+      "date": "Oct 2025 – Oct 2025",
+      "quote": "Protect your AI vision module — durable, compact, and mount-ready.",
+      "description": "I designed a durable and compact 3D-printed case for the HuskyLens AI camera to protect it during robotics or AI vision projects. The case safely encloses the module while keeping all ports, buttons, and the display easily accessible. It also includes mounting holes for attaching the case to robots, frames, or project enclosures."
+    },
+    {
+      "src": "/assets/Projects/1764080426222.jpg",
+      "images": ["/assets/Projects/1764080426222.jpg", "/assets/Projects/1764080424993.jpg"],
+      "title": "3D Printed Resistor Organizer Box",
+      "date": "Oct 2025 – Oct 2025",
+      "quote": "Compact thinking — a custom-made organizer for the electronics workspace.",
+      "description": "After trying out different organizers, I designed and printed a Compact Resistor Organizer Box. Anyone who works with electronics knows how quickly resistors can pile up and mix together. I needed a case that was portable, well-labeled, and easy to access while prototyping."
+    },
+    {
+      "src": "/assets/Projects/1760533643297.jpg",
+      "images": ["/assets/Projects/1760533643297.jpg"],
+      "title": "Tools Organiser",
+      "date": "Oct 2025 – Oct 2025",
+      "quote": "A tidy workspace is a productive workspace — 3D printed and custom made.",
+      "description": "I designed a simple 3D-printed tabletop organizer to keep my tools, pens, and small electronics neatly arranged on my desk. It's compact, functional, and easy to print — perfect for hobbyists, makers, or anyone who wants a tidy workspace."
+    },
+    {
+      "src": "/assets/Projects/k.jpg",
+      "images": ["/assets/Projects/k.jpg", "/assets/Projects/k1.jpg", "/assets/Projects/k3.jpg"],
+      "title": "Keyboard Height Extender",
+      "date": "Oct 2025 – Oct 2025",
+      "quote": "Better posture, better typing — a simple 3D-printed ergonomic fix.",
+      "description": "I designed a simple 3D-printed keyboard height extender to improve typing comfort and reduce wrist strain. It slightly raises the back side of the keyboard to create a more ergonomic typing angle."
+    },
+    {
+      "src": "/assets/Projects/WhatsApp Video 2026-05-07 at 2.35.48 PM.mp4",
+      "videoSrc": "/assets/Projects/WhatsApp Video 2026-05-07 at 2.35.48 PM.mp4",
+      "images": null,
+      "title": "Workshop Session — Clip 1",
+      "date": "May 2026",
+      "quote": "Behind every great build is an even greater process.",
+      "description": "A live recording from a hands-on workshop session, capturing the build and testing process in action."
+    },
+    {
+      "src": "/assets/Projects/WhatsApp Video 2026-05-07 at 2.36.15 PM.mp4",
+      "videoSrc": "/assets/Projects/WhatsApp Video 2026-05-07 at 2.36.15 PM.mp4",
+      "images": null,
+      "title": "Workshop Session — Clip 2",
+      "date": "May 2026",
+      "quote": "Every iteration brings the design one step closer to perfect.",
+      "description": "Continuation of the workshop session, showcasing assembly, wiring, or demonstration of the project in progress."
+    },
+    {
+      "src": "/assets/Projects/WhatsApp Video 2026-05-07 at 2.36.15 PM (1).mp4",
+      "videoSrc": "/assets/Projects/WhatsApp Video 2026-05-07 at 2.36.15 PM (1).mp4",
+      "images": null,
+      "title": "Workshop Session — Clip 3",
+      "date": "May 2026",
+      "quote": "The final moments of a build session — where ideas become reality.",
+      "description": "The concluding clip from the workshop session, highlighting the final stages of the project build or a live demonstration."
+    }
+  ],
+  "awards": [
+    {
+      "title": "1st Place - Project Expo",
+      "event": "THARANG 2K24",
+      "desc": "Developed a fully automated AI-powered wheelchair integrating joystick, eye, and voice control with smart navigation and safety features. Recognized for innovation, real-world impact, and advanced robotics application.",
+      "icon": "Trophy",
+      "image": "/assets/Awards/WhatsApp Image 2026-04-18 at 11.29.21 AM.jpeg"
+    },
+    {
+      "title": "1st Place - Shark Tank Pitch",
+      "event": "Tech Fest 2K24",
+      "desc": "Achieved 1st place in the Shark Tank–style Idea Pitch Competition. Presented an innovative business idea with strong real-world application and scalability. Proud to have competed against college students and secured the top spot.",
+      "icon": "Star",
+      "image": "/assets/Awards/WhatsApp Image 2026-04-18 at 11.29.20 AM (1).jpeg"
+    },
+    {
+      "title": "2nd Place - Robo Race",
+      "event": "THARANG 2K24",
+      "desc": "Secured 2nd place in Robo Race. Designed and raced a high-speed robot optimized for agility, stability, and obstacle navigation. Recognized for engineering skill, precision control, and competitive performance.",
+      "icon": "Award",
+      "image": "/assets/Awards/WhatsApp Image 2026-04-18 at 11.29.20 AM.jpeg"
+    },
+    {
+      "title": "Special Recognition Award",
+      "event": "Edu AI Expo, IHRD Perinthalmanna",
+      "desc": "Honored with a special award for successfully organizing the Robotics Expo. The event showcased cutting-edge robotics projects and inspired students toward innovation. Recognized for leadership, coordination, and contribution to the success of the expo.",
+      "icon": "Star",
+      "image": "/assets/Awards/WhatsApp Image 2026-04-18 at 11.29.21 AM (1).jpeg"
+    },
+    {
+      "title": "Team Thanks Award",
+      "event": "ProjectX, Exceligentia 2025",
+      "desc": "Received the Team Thanks Award from ProjectX. Recognized for valuable support at Exceligentia 2025. Part of South India’s Biggest Students Innovators Summit.",
+      "icon": "Award",
+      "image": "/assets/Awards/WhatsApp Image 2026-04-18 at 11.29.22 AM.jpeg"
+    },
+    {
+      "title": "1st Place - Science Fair",
+      "event": "Sub District Science Fair",
+      "desc": "Secured 1st place for presenting an innovative science project. Recognized for creativity, practical application, and problem-solving skills. This achievement strengthened my passion for STEM and real-world innovation.",
+      "icon": "Trophy",
+      "image": "/assets/Awards/WhatsApp Image 2026-04-18 at 11.29.19 AM.jpeg"
+    },
+    {
+      "title": "Class Leadership Recognition",
+      "event": "Academic Year 2024",
+      "desc": "Recognized for outstanding leadership and active participation in class activities and organizational roles.",
+      "icon": "Star",
+      "image": "/assets/Awards/Class/WhatsApp Image 2026-04-18 at 11.28.58 AM.jpeg"
+    },
+    {
+      "title": "Excellence in Class Performance",
+      "event": "Academic Year 2024",
+      "desc": "Commended for consistent academic performance and dedication to learning throughout the academic year.",
+      "icon": "Award",
+      "image": "/assets/Awards/Class/WhatsApp Image 2026-04-18 at 11.28.59 AM.jpeg"
+    }
+  ]
+}

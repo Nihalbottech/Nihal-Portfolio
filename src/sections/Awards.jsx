@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Award, Trophy, Star, X, ChevronLeft, ChevronRight, Maximize2 } from 'lucide-react';
+import contentData from '../data/content.json';
 
-import img1 from '../assets/Awards/WhatsApp Image 2026-04-18 at 11.29.19 AM.jpeg';
-import img2 from '../assets/Awards/WhatsApp Image 2026-04-18 at 11.29.20 AM (1).jpeg';
-import img3 from '../assets/Awards/WhatsApp Image 2026-04-18 at 11.29.20 AM.jpeg';
-import img4 from '../assets/Awards/WhatsApp Image 2026-04-18 at 11.29.21 AM (1).jpeg';
-import img5 from '../assets/Awards/WhatsApp Image 2026-04-18 at 11.29.22 AM.jpeg';
-import img6 from '../assets/Awards/WhatsApp Image 2026-04-18 at 11.29.21 AM.jpeg';
-import classImg1 from '../assets/Awards/Class/WhatsApp Image 2026-04-18 at 11.28.58 AM.jpeg';
-import classImg2 from '../assets/Awards/Class/WhatsApp Image 2026-04-18 at 11.28.59 AM.jpeg';
+const IconMap = {
+  'Trophy': { component: Trophy, color: 'text-primary' },
+  'Star': { component: Star, color: 'text-accent' },
+  'Award': { component: Award, color: 'text-primary' }
+};
 
-const AwardCard = ({ title, event, desc, icon, image, index, onClick }) => {
+const AwardCard = ({ title, event, desc, iconName, image, index, onClick }) => {
+  const IconData = IconMap[iconName] || IconMap['Star'];
+  const IconComponent = IconData.component;
+
   return (
     <motion.div 
       whileHover={{ y: -6 }}
@@ -36,7 +37,7 @@ const AwardCard = ({ title, event, desc, icon, image, index, onClick }) => {
       <div className="p-8 pt-4 flex-grow flex flex-col relative z-10">
         <div className="flex items-center space-x-4 mb-5 transform -translate-y-10">
           <div className="w-16 h-16 rounded-2xl bg-surface border-2 border-borderLine flex items-center justify-center shrink-0 shadow-xl group-hover:border-primary/50 transition-colors">
-            {icon}
+            <IconComponent className={`w-8 h-8 ${IconData.color} stroke-[1.5]`} />
           </div>
         </div>
         
@@ -55,6 +56,8 @@ const AwardCard = ({ title, event, desc, icon, image, index, onClick }) => {
 const Awards = () => {
   const [activeIndex, setActiveIndex] = useState(null);
 
+  const awardsData = contentData.awards || [];
+
   // Lock body scroll when modal is open
   useEffect(() => {
     if (activeIndex !== null) {
@@ -65,65 +68,6 @@ const Awards = () => {
     return () => { document.body.style.overflow = ''; };
   }, [activeIndex]);
 
-  const awardsData = [
-    {
-      title: "1st Place - Project Expo",
-      event: "THARANG 2K24",
-      desc: "Developed a fully automated AI-powered wheelchair integrating joystick, eye, and voice control with smart navigation and safety features. Recognized for innovation, real-world impact, and advanced robotics application.",
-      icon: <Trophy className="w-8 h-8 text-primary stroke-[1.5]" />,
-      image: img6
-    },
-    {
-      title: "1st Place - Shark Tank Pitch",
-      event: "Tech Fest 2K24",
-      desc: "Achieved 1st place in the Shark Tank–style Idea Pitch Competition. Presented an innovative business idea with strong real-world application and scalability. Proud to have competed against college students and secured the top spot.",
-      icon: <Star className="w-8 h-8 text-accent stroke-[1.5]" />,
-      image: img2
-    },
-    {
-      title: "2nd Place - Robo Race",
-      event: "THARANG 2K24",
-      desc: "Secured 2nd place in Robo Race. Designed and raced a high-speed robot optimized for agility, stability, and obstacle navigation. Recognized for engineering skill, precision control, and competitive performance.",
-      icon: <Award className="w-8 h-8 text-success stroke-[1.5]" />,
-      image: img3
-    },
-    {
-      title: "Special Recognition Award",
-      event: "Edu AI Expo, IHRD Perinthalmanna",
-      desc: "Honored with a special award for successfully organizing the Robotics Expo. The event showcased cutting-edge robotics projects and inspired students toward innovation. Recognized for leadership, coordination, and contribution to the success of the expo.",
-      icon: <Star className="w-8 h-8 text-primary stroke-[1.5]" />,
-      image: img4
-    },
-    {
-      title: "Team Thanks Award",
-      event: "ProjectX, Exceligentia 2025",
-      desc: "Received the Team Thanks Award from ProjectX. Recognized for valuable support at Exceligentia 2025. Part of South India’s Biggest Students Innovators Summit.",
-      icon: <Award className="w-8 h-8 text-accent stroke-[1.5]" />,
-      image: img5
-    },
-    {
-      title: "1st Place - Science Fair",
-      event: "Sub District Science Fair",
-      desc: "Secured 1st place for presenting an innovative science project. Recognized for creativity, practical application, and problem-solving skills. This achievement strengthened my passion for STEM and real-world innovation.",
-      icon: <Trophy className="w-8 h-8 text-success stroke-[1.5]" />,
-      image: img1
-    },
-    {
-      title: "Class Leadership Recognition",
-      event: "Academic Year 2024",
-      desc: "Recognized for outstanding leadership and active participation in class activities and organizational roles.",
-      icon: <Star className="w-8 h-8 text-primary stroke-[1.5]" />,
-      image: classImg1
-    },
-    {
-      title: "Excellence in Class Performance",
-      event: "Academic Year 2024",
-      desc: "Commended for consistent academic performance and dedication to learning throughout the academic year.",
-      icon: <Award className="w-8 h-8 text-accent stroke-[1.5]" />,
-      image: classImg2
-    }
-  ];
-
   const handleNext = (e) => {
     e.stopPropagation();
     setActiveIndex((prev) => (prev + 1) % awardsData.length);
@@ -133,6 +77,8 @@ const Awards = () => {
     e.stopPropagation();
     setActiveIndex((prev) => (prev - 1 + awardsData.length) % awardsData.length);
   };
+
+  const activeAward = activeIndex !== null ? awardsData[activeIndex] : null;
 
   return (
     <section id="awards" className="py-24 bg-surface/30 border-b border-borderLine relative z-10">

@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Box, Layout, Download } from 'lucide-react';
 import { FaInstagram, FaLinkedinIn } from 'react-icons/fa';
+import contentData from '../data/content.json';
 
 import profileImg from '../assets/Profile/Nihal.png';
 import companyLogo from '../assets/Profile/Untitled48_20260425160351.png';
@@ -9,6 +10,8 @@ import instructablesLogo from '../assets/Awards/Logos/jhgb.png';
 import resumePdf from '../assets/Resume/Mohammed_Nihal_Final_Resume.pdf';
 
 const Hero = () => {
+  const heroData = contentData.hero;
+
   return (
     <section id="hero" className="relative min-h-[90vh] flex items-center pt-20 overflow-hidden z-10 bg-background border-b border-borderLine">
       
@@ -29,7 +32,6 @@ const Hero = () => {
       <div className="container mx-auto px-6 max-w-7xl relative z-10 grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24 items-center py-12">
         
         {/* Left Text */}
-        {/* Left Text */}
         <motion.div 
           initial={{ opacity: 0, x: -30 }}
           animate={{ opacity: 1, x: 0 }}
@@ -43,16 +45,15 @@ const Hero = () => {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-5xl md:text-6xl lg:text-7xl font-display font-bold text-text leading-[1.1] mb-4"
             >
-              Mohammed <span className="text-primary inline-block">Nihal</span> M
+              {heroData.firstName} <span className="text-primary inline-block">{heroData.lastName}</span>
             </motion.h1>
             <motion.h2 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="text-2xl md:text-3xl text-muted font-normal leading-tight"
+              className="text-2xl md:text-3xl text-muted font-normal leading-tight whitespace-pre-line"
             >
-              Robotics Intern <br />
-              STEM Educator
+              {heroData.titles}
             </motion.h2>
           </div>
           <motion.p 
@@ -61,7 +62,7 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.6 }}
             className="text-muted text-lg md:text-xl max-w-lg leading-relaxed mt-2"
           >
-            Designing intelligent systems and training future innovators.
+            {heroData.description}
           </motion.p>
           
           <motion.div 

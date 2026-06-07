@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import RevealLoader from './components/ui/reveal-loader';
 import Hero from './sections/Hero';
@@ -13,7 +14,11 @@ import Certificates from './sections/Certificates';
 import Classes from './sections/Classes';
 import Contact from './sections/Contact';
 
-function App() {
+// Admin Components
+import AdminLogin from './components/admin/AdminLogin';
+import AdminDashboard from './components/admin/AdminDashboard';
+
+function Portfolio() {
   const [activeSection, setActiveSection] = useState('hero');
 
   useEffect(() => {
@@ -42,7 +47,6 @@ function App() {
         textFadeDelay={0.5}
       />
       <div className="bg-background min-h-screen text-text font-sans overflow-x-hidden selection:bg-primary selection:text-white antialiased">
-        {/* Animated CSS Pattern Background */}
         <div className="pattern-bg"></div>
         <Navbar activeSection={activeSection} />
       
@@ -69,6 +73,18 @@ function App() {
       </footer>
     </div>
     </>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<Portfolio />} />
+        <Route path="/admin" element={<AdminLogin />} />
+        <Route path="/admin/dashboard" element={<AdminDashboard />} />
+      </Routes>
+    </Router>
   );
 }
 
