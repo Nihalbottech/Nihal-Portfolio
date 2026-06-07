@@ -5,7 +5,7 @@ import { FaInstagram, FaLinkedinIn } from 'react-icons/fa';
 import contentData from '../data/content.json';
 
 import profileImg from '../assets/Profile/Nihal.png';
-import companyLogo from '../assets/Profile/Untitled48_20260425160351.png';
+import companyLogo from '../assets/Profile/Untitled48_20260425154829.png';
 import instructablesLogo from '../assets/Awards/Logos/jhgb.png';
 import resumePdf from '../assets/Resume/Mohammed_Nihal_Final_Resume.pdf';
 
