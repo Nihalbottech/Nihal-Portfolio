@@ -226,5 +226,72 @@
       "icon": "Award",
       "image": "/assets/Awards/Class/WhatsApp Image 2026-04-18 at 11.28.59 AM.jpeg"
     }
+  ],
+  "about": {
+    "bioParagraph1": "I have recently completed my higher secondary education and am an aspiring robotics and embedded systems engineer, passionate about building real-world solutions through hands-on innovation.",
+    "bioParagraph2": "I specialize in developing functional robotics systems, 3D printed designs, and actively mentor students in STEM, embedded systems, and Arduino programming.",
+    "skills": [
+      { "icon": "Cpu", "label": "Embedded Systems" },
+      { "icon": "Settings", "label": "Robotics" },
+      { "icon": "Code", "label": "Arduino" },
+      { "icon": "Box", "label": "3D Printing" },
+      { "icon": "BookOpen", "label": "STEM Education" },
+      { "icon": "Users", "label": "Mentoring" },
+      { "icon": "Printer", "label": "CAD Design" },
+      { "icon": "Rocket", "label": "Prototyping" }
+    ],
+    "stats": [
+      { "end": 30, "suffix": "+", "label": "Projects Built" },
+      { "end": 6, "suffix": "", "label": "Certifications" },
+      { "end": 7, "suffix": "", "label": "Awards" },
+      { "end": 2, "suffix": "+", "label": "Years Learning" }
+    ]
+  },
+  "contact": {
+    "email": "melethilnihalmohammed@gmail.com",
+    "phone": "+91 8075097435",
+    "whatsappUrl": "https://wa.me/918075097435"
+  },
+  "socials": [
+    {
+      "name": "LinkedIn",
+      "letter": "in",
+      "icon": "FaLinkedin",
+      "href": "https://www.linkedin.com/in/nihalmelethilmohammed",
+      "color": "bg-[#0077b5]",
+      "shadowColor": "rgba(0,119,181,0.5)"
+    },
+    {
+      "name": "Instagram",
+      "letter": "ig",
+      "icon": "FaInstagram",
+      "href": "https://www.instagram.com/_nihalmohammed__?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
+      "color": "bg-[#E1306C]",
+      "shadowColor": "rgba(225,48,108,0.5)"
+    },
+    {
+      "name": "Instructables",
+      "letter": "ib",
+      "icon": "SiInstructables",
+      "href": "https://www.instructables.com/member/Mohammed%20Nihal/instructables/",
+      "color": "bg-[#F2A200]",
+      "shadowColor": "rgba(242,162,0,0.5)"
+    },
+    {
+      "name": "Thingiverse",
+      "letter": "tv",
+      "icon": "SiThingiverse",
+      "href": "https://www.thingiverse.com/NihalMohammed/designs",
+      "color": "bg-[#248BFB]",
+      "shadowColor": "rgba(36,139,251,0.5)"
+    },
+    {
+      "name": "WhatsApp",
+      "letter": "wa",
+      "icon": "FaWhatsapp",
+      "href": "https://wa.me/918075097435",
+      "color": "bg-[#16a34a]",
+      "shadowColor": "rgba(22,163,74,0.5)"
+    }
   ]
 }

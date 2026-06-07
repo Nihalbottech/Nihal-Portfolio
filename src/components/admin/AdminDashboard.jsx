@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { LogOut, Loader2, Layout, FolderKanban, Award } from 'lucide-react';
+import { LogOut, Loader2, Layout, FolderKanban, Award, User, Mail, Settings } from 'lucide-react';
 import contentData from '../../data/content.json';
 import HeroEditor from './HeroEditor';
 import ProjectsEditor from './ProjectsEditor';
 import AwardsEditor from './AwardsEditor';
+import AboutEditor from './AboutEditor';
+import ContactEditor from './ContactEditor';
+import AdvancedEditor from './AdvancedEditor';
 
 const toBase64 = file => new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -73,9 +76,12 @@ const AdminDashboard = () => {
   }
 
   const tabs = [
-    { id: 'hero', label: 'Hero Section', icon: <Layout size={18} /> },
+    { id: 'hero', label: 'Hero', icon: <Layout size={18} /> },
+    { id: 'about', label: 'About', icon: <User size={18} /> },
     { id: 'projects', label: 'Projects', icon: <FolderKanban size={18} /> },
     { id: 'awards', label: 'Awards', icon: <Award size={18} /> },
+    { id: 'contact', label: 'Contact', icon: <Mail size={18} /> },
+    { id: 'advanced', label: 'Advanced', icon: <Settings size={18} /> },
   ];
 
   return (
@@ -89,12 +95,12 @@ const AdminDashboard = () => {
           
           <div className="flex items-center space-x-4">
              {/* Tabs Desktop */}
-            <div className="hidden md:flex bg-surface border border-borderLine rounded-lg p-1">
+            <div className="hidden lg:flex bg-surface border border-borderLine rounded-lg p-1">
               {tabs.map(tab => (
                 <button 
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`flex items-center space-x-2 px-4 py-2 rounded-md text-sm font-medium transition-all ${activeTab === tab.id ? 'bg-primary text-white shadow-md' : 'text-muted hover:text-text hover:bg-white/5'}`}
+                  className={`flex items-center space-x-2 px-3 py-2 rounded-md text-sm font-medium transition-all ${activeTab === tab.id ? 'bg-primary text-white shadow-md' : 'text-muted hover:text-text hover:bg-white/5'}`}
                 >
                   {tab.icon}
                   <span>{tab.label}</span>
@@ -113,7 +119,7 @@ const AdminDashboard = () => {
         </header>
 
         {/* Tabs Mobile */}
-        <div className="flex md:hidden bg-surface border border-borderLine rounded-lg p-1 mb-8 overflow-x-auto">
+        <div className="flex lg:hidden bg-surface border border-borderLine rounded-lg p-1 mb-8 overflow-x-auto custom-scrollbar">
           {tabs.map(tab => (
             <button 
               key={tab.id}
@@ -143,6 +149,15 @@ const AdminDashboard = () => {
             />
           )}
 
+          {activeTab === 'about' && (
+            <AboutEditor 
+              data={content.about} 
+              onChange={(data) => setContent({...content, about: data})} 
+              onSave={handleSaveAll}
+              saving={saving}
+            />
+          )}
+
           {activeTab === 'projects' && (
             <ProjectsEditor 
               data={content.projects || []} 
@@ -160,6 +175,26 @@ const AdminDashboard = () => {
               onSave={handleSaveAll}
               saving={saving}
               toBase64={toBase64}
+            />
+          )}
+
+          {activeTab === 'contact' && (
+            <ContactEditor 
+              contactData={content.contact} 
+              socialsData={content.socials} 
+              onContactChange={(data) => setContent({...content, contact: data})} 
+              onSocialsChange={(data) => setContent({...content, socials: data})} 
+              onSave={handleSaveAll}
+              saving={saving}
+            />
+          )}
+
+          {activeTab === 'advanced' && (
+            <AdvancedEditor 
+              data={content} 
+              contentRef={setContent}
+              onSave={handleSaveAll}
+              saving={saving}
             />
           )}
         </div>

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Settings, Printer, Users, GraduationCap, Briefcase, Rocket, Cpu, Code, Box, BookOpen } from 'lucide-react';
+import contentData from '../data/content.json';
 
 // Animated counter
 const Counter = ({ end, suffix = '', label }) => {
@@ -44,17 +45,19 @@ const itemVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } }
 };
 
+const IconMap = {
+  Cpu: <Cpu size={14} />,
+  Settings: <Settings size={14} />,
+  Code: <Code size={14} />,
+  Box: <Box size={14} />,
+  BookOpen: <BookOpen size={14} />,
+  Users: <Users size={14} />,
+  Printer: <Printer size={14} />,
+  Rocket: <Rocket size={14} />,
+};
+
 const About = () => {
-  const skills = [
-    { icon: <Cpu size={14} />, label: "Embedded Systems" },
-    { icon: <Settings size={14} />, label: "Robotics" },
-    { icon: <Code size={14} />, label: "Arduino" },
-    { icon: <Box size={14} />, label: "3D Printing" },
-    { icon: <BookOpen size={14} />, label: "STEM Education" },
-    { icon: <Users size={14} />, label: "Mentoring" },
-    { icon: <Printer size={14} />, label: "CAD Design" },
-    { icon: <Rocket size={14} />, label: "Prototyping" },
-  ];
+  const aboutData = contentData.about;
 
   const highlights = [
     {
@@ -131,12 +134,7 @@ const About = () => {
           transition={{ duration: 0.5, delay: 0.1 }}
           className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16"
         >
-          {[
-            { end: 30, suffix: '+', label: 'Projects Built' },
-            { end: 6, suffix: '', label: 'Certifications' },
-            { end: 7, suffix: '', label: 'Awards' },
-            { end: 2, suffix: '+', label: 'Years Learning' },
-          ].map((stat, i) => (
+          {aboutData.stats.map((stat, i) => (
             <div key={i} className="bg-background rounded-2xl border border-borderLine p-6 hover:border-primary/40 transition-colors duration-300">
               <Counter end={stat.end} suffix={stat.suffix} label={stat.label} />
             </div>
@@ -157,10 +155,10 @@ const About = () => {
             {/* Bio */}
             <motion.div variants={itemVariants}>
               <p className="text-muted text-base leading-relaxed mb-4">
-                I have recently completed my higher secondary education and am an aspiring robotics and embedded systems engineer, passionate about building real-world solutions through hands-on innovation.
+                {aboutData.bioParagraph1}
               </p>
               <p className="text-muted text-base leading-relaxed">
-                I specialize in developing functional robotics systems, 3D printed designs, and actively mentor students in STEM, embedded systems, and Arduino programming.
+                {aboutData.bioParagraph2}
               </p>
             </motion.div>
 
@@ -168,14 +166,14 @@ const About = () => {
             <motion.div variants={itemVariants}>
               <p className="text-xs font-semibold tracking-widest text-muted uppercase mb-3">Top Skills</p>
               <div className="flex flex-wrap gap-2">
-                {skills.map((skill, i) => (
+                {aboutData.skills.map((skill, i) => (
                   <motion.div
                     key={i}
                     whileHover={{ scale: 1.06, y: -2 }}
                     transition={{ duration: 0.2 }}
                     className="flex items-center space-x-2 px-3 py-2 bg-background border border-borderLine rounded-full text-sm text-muted hover:text-primary hover:border-primary/50 transition-colors cursor-default"
                   >
-                    <span className="text-primary">{skill.icon}</span>
+                    <span className="text-primary">{IconMap[skill.icon] || <Settings size={14} />}</span>
                     <span>{skill.label}</span>
                   </motion.div>
                 ))}
@@ -248,53 +246,62 @@ const About = () => {
                 key={idx}
                 variants={itemVariants}
                 whileHover={{ y: -4, x: 4 }}
-                transition={{ duration: 0.3 }}
-                className={`bg-background rounded-2xl p-6 border border-borderLine flex items-start space-x-5 hover:border-primary/30 transition-all duration-300 relative overflow-hidden group`}
+                className="group flex items-start p-6 bg-background rounded-2xl border border-borderLine hover:border-primary/30 transition-all duration-300 relative overflow-hidden"
               >
-                <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
-                <div className="w-12 h-12 rounded-xl bg-surface border border-borderLine flex items-center justify-center shrink-0 relative z-10 group-hover:scale-110 transition-transform duration-300">
+                <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl ${item.gradient} blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
+                
+                <div className="relative z-10 w-12 h-12 rounded-xl bg-surface border border-borderLine flex items-center justify-center shrink-0 mr-5 group-hover:border-primary/30 transition-colors">
                   {item.icon}
                 </div>
                 <div className="relative z-10">
-                  <h4 className="text-lg font-semibold text-text mb-1">{item.title}</h4>
-                  <p className="text-sm text-muted leading-relaxed">{item.desc}</p>
+                  <h4 className="text-lg font-bold text-text mb-1 group-hover:text-primary transition-colors">{item.title}</h4>
+                  <p className="text-muted text-sm leading-relaxed">{item.desc}</p>
                 </div>
               </motion.div>
             ))}
 
-            {/* Experience */}
+            {/* Experience Timeline */}
             <motion.div
               variants={itemVariants}
-              className="bg-background rounded-2xl border border-borderLine p-6 hover:border-primary/30 transition-colors duration-300 group"
+              className="bg-background rounded-2xl border border-borderLine p-8 hover:border-primary/30 transition-colors duration-300 group mt-4 relative overflow-hidden"
             >
-              <div className="flex items-center space-x-3 mb-5">
-                <div className="w-10 h-10 rounded-xl bg-surface border border-borderLine flex items-center justify-center shrink-0 group-hover:border-primary/40 transition-colors">
-                  <Briefcase className="w-5 h-5 text-primary stroke-[1.5]" />
+              {/* Background accent */}
+              <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+
+              <div className="flex items-center space-x-3 mb-8 relative z-10">
+                <div className="w-12 h-12 rounded-xl bg-surface border border-borderLine flex items-center justify-center shrink-0 group-hover:border-primary/40 transition-colors shadow-sm">
+                  <Briefcase className="w-6 h-6 text-primary stroke-[1.5]" />
                 </div>
                 <h4 className="text-sm font-semibold tracking-widest text-muted uppercase">Experience</h4>
               </div>
 
-              <div className="relative pl-5 border-l-2 border-borderLine space-y-7">
+              <div className="space-y-8 relative z-10">
                 {experience.map((exp, idx) => (
-                  <motion.div
-                    key={idx}
-                    whileHover={{ x: 4 }}
-                    transition={{ duration: 0.2 }}
-                    className="relative"
-                  >
-                    <div className={`absolute -left-[21px] top-1.5 w-2.5 h-2.5 rounded-full ${exp.color} ring-2 ring-background`}></div>
+                  <div key={idx} className="relative pl-6">
+                    {/* Timeline Line */}
+                    {idx !== experience.length - 1 && (
+                      <div className="absolute left-1.5 top-6 bottom-[-24px] w-px bg-borderLine"></div>
+                    )}
+                    
+                    {/* Timeline Dot */}
+                    <div className={`absolute left-0 top-2 w-3 h-3 rounded-full ${exp.color} ring-4 ring-background shadow-sm`}></div>
+                    
                     <h5 className="text-base font-bold text-text leading-snug">{exp.role}</h5>
                     {exp.link ? (
-                      <a href={exp.link} target="_blank" rel="noopener noreferrer" className={`text-sm font-medium mt-0.5 block hover:underline hover:opacity-80 transition-all ${exp.textColor}`}>
+                      <a href={exp.link} target="_blank" rel="noopener noreferrer" className={`text-sm font-medium ${exp.textColor} hover:underline mt-0.5 inline-block`}>
                         {exp.company}
                       </a>
                     ) : (
-                      <p className={`text-sm font-medium mt-0.5 ${exp.textColor}`}>{exp.company}</p>
+                      <p className={`text-sm font-medium ${exp.textColor} mt-0.5`}>{exp.company}</p>
                     )}
-                    <p className="text-muted text-xs mt-0.5">{exp.type}</p>
-                    <p className="text-muted text-xs">{exp.period}</p>
-                    <p className="text-muted text-sm mt-2 leading-relaxed">{exp.desc}</p>
-                  </motion.div>
+                    
+                    <div className="flex items-center text-xs text-muted mt-1.5 space-x-2">
+                      <span>{exp.period}</span>
+                      <span>•</span>
+                      <span>{exp.type}</span>
+                    </div>
+                    <p className="text-muted text-sm mt-3 leading-relaxed">{exp.desc}</p>
+                  </div>
                 ))}
               </div>
             </motion.div>
