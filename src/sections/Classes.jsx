@@ -52,55 +52,58 @@ const Classes = () => {
   };
 
   return (
-    <section id="classes" className="py-24 bg-background border-b border-borderLine relative z-10 overflow-hidden">
-      
-      {/* Ambient glow */}
-      <div className="absolute top-1/2 left-0 w-[400px] h-[400px] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
+  return (
+    <>
+      <section id="classes" className="py-24 bg-background border-b border-borderLine relative z-10 overflow-hidden">
+        
+        {/* Ambient glow */}
+        <div className="absolute top-1/2 left-0 w-[400px] h-[400px] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
 
-      <div className="container mx-auto px-6 max-w-7xl relative">
+        <div className="container mx-auto px-6 max-w-7xl relative">
 
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-16 text-center"
-        >
-          <h2 className="text-sm font-semibold tracking-widest text-muted uppercase mb-3 text-primary">Mentorship</h2>
-          <h3 className="text-4xl font-display font-bold text-text mb-4">Hands-on Classes</h3>
-          <p className="text-muted text-base max-w-2xl mx-auto">
-            Glimpses into my training sessions where I mentor students in robotics, 3D design, and embedded systems.
-          </p>
-        </motion.div>
-
-        {/* Grid */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
-        >
-          {classImages.map((src, index) => (
-            <ClassCard key={index} image={src} index={index} onClick={setActiveIndex} />
-          ))}
-          
-          {/* Info Card */}
+          {/* Header */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="flex flex-col items-center justify-center p-8 bg-surface border border-dashed border-borderLine rounded-2xl text-center"
+            transition={{ duration: 0.6 }}
+            className="mb-16 text-center"
           >
-            <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-              <BookOpen className="text-primary" size={24} />
-            </div>
-            <h4 className="text-xl font-bold text-text mb-2">Interactive Learning</h4>
-            <p className="text-sm text-muted">Focusing on practical problem-solving and real-world hardware experience.</p>
+            <h2 className="text-sm font-semibold tracking-widest text-muted uppercase mb-3 text-primary">Mentorship</h2>
+            <h3 className="text-4xl font-display font-bold text-text mb-4">Hands-on Classes</h3>
+            <p className="text-muted text-base max-w-2xl mx-auto">
+              Glimpses into my training sessions where I mentor students in robotics, 3D design, and embedded systems.
+            </p>
           </motion.div>
-        </motion.div>
-      </div>
+
+          {/* Grid */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+          >
+            {classImages.map((src, index) => (
+              <ClassCard key={index} image={src} index={index} onClick={setActiveIndex} />
+            ))}
+            
+            {/* Info Card */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              className="flex flex-col items-center justify-center p-8 bg-surface border border-dashed border-borderLine rounded-2xl text-center"
+            >
+              <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+                <BookOpen className="text-primary" size={24} />
+              </div>
+              <h4 className="text-xl font-bold text-text mb-2">Interactive Learning</h4>
+              <p className="text-sm text-muted">Focusing on practical problem-solving and real-world hardware experience.</p>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
 
       {/* Lightbox Modal */}
       <AnimatePresence>
@@ -114,10 +117,11 @@ const Classes = () => {
             onClick={() => setActiveIndex(null)}
           >
             <button
-              className="absolute top-6 right-6 w-12 h-12 rounded-full bg-surface/50 hover:bg-red-500/90 border border-borderLine flex items-center justify-center text-muted hover:text-white transition-all z-[110]"
+              className="absolute top-6 right-6 w-12 h-12 rounded-full bg-surface/50 hover:bg-red-500/90 border border-borderLine hover:border-red-500 flex items-center justify-center text-muted hover:text-white transition-all z-[110] shadow-lg"
               onClick={(e) => { e.stopPropagation(); setActiveIndex(null); }}
+              title="Close"
             >
-              <X size={24} />
+              <X size={24} strokeWidth={2} />
             </button>
 
             <motion.div
@@ -153,7 +157,7 @@ const Classes = () => {
           </motion.div>
         )}
       </AnimatePresence>
-    </section>
+    </>
   );
 };
 
