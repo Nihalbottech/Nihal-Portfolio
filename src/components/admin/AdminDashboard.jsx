@@ -7,7 +7,6 @@ import ProjectsEditor from './ProjectsEditor';
 import AwardsEditor from './AwardsEditor';
 import AboutEditor from './AboutEditor';
 import ContactEditor from './ContactEditor';
-import AdvancedEditor from './AdvancedEditor';
 import SecurityEditor from './SecurityEditor';
 
 const toBase64 = file => new Promise((resolve, reject) => {
@@ -82,7 +81,6 @@ const AdminDashboard = () => {
     { id: 'projects', label: 'Projects', icon: <FolderKanban size={18} /> },
     { id: 'awards', label: 'Awards', icon: <Award size={18} /> },
     { id: 'contact', label: 'Contact', icon: <Mail size={18} /> },
-    { id: 'advanced', label: 'Advanced', icon: <Settings size={18} /> },
     { id: 'security', label: 'Security', icon: <KeyRound size={18} /> },
   ];
 
@@ -198,15 +196,6 @@ const AdminDashboard = () => {
               socialsData={content.socials} 
               onContactChange={(data) => setContent({...content, contact: data})} 
               onSocialsChange={(data) => setContent({...content, socials: data})} 
-              onSave={handleSaveAll}
-              saving={saving}
-            />
-          )}
-
-          {activeTab === 'advanced' && (
-            <AdvancedEditor 
-              data={content} 
-              contentRef={setContent}
               onSave={handleSaveAll}
               saving={saving}
             />
