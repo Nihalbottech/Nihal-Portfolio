@@ -10,7 +10,9 @@
       "src": "/assets/Projects/WhatsApp Video 2026-04-18 at 11.27.30 AM.mp4",
       "videoSrc": "/assets/Projects/WhatsApp Video 2026-04-18 at 11.27.30 AM.mp4",
       "images": null,
-      "extraImages": ["/assets/Projects/1758561548814.jpg"],
+      "extraImages": [
+        "/assets/Projects/1758561548814.jpg"
+      ],
       "title": "Robotic Dog",
       "date": "Jun 2025 – Jul 2025",
       "association": "Associated with Technical Higher Secondary School Perinthalmanna",
@@ -19,7 +21,10 @@
     },
     {
       "src": "/assets/Projects/1758559081994.jpg",
-      "images": ["/assets/Projects/1758559081994.jpg", "/assets/Projects/1758559113593.jpg"],
+      "images": [
+        "/assets/Projects/1758559081994.jpg",
+        "/assets/Projects/1758559113593.jpg"
+      ],
       "title": "Joystick Controller for My Robot Dog",
       "date": "Jun 2025 – Jul 2025",
       "association": "Associated with Technical Higher Secondary School Perinthalmanna",
@@ -28,7 +33,9 @@
     },
     {
       "src": "/assets/Projects/wild.jpg",
-      "images": ["/assets/Projects/wild.jpg"],
+      "images": [
+        "/assets/Projects/wild.jpg"
+      ],
       "title": "Wild Animal Attack Monitoring System (Prototype)",
       "date": "Sep 2025 – Sep 2025",
       "quote": "A step toward wildlife safety, combining AI vision and IoT for protection.",
@@ -36,24 +43,34 @@
     },
     {
       "src": "/assets/Projects/robotic arm.jpg",
-      "images": ["/assets/Projects/robotic arm.jpg"],
+      "images": [
+        "/assets/Projects/robotic arm.jpg"
+      ],
       "title": "3D Printed Robotic Arm",
       "date": "Apr 2025 – Apr 2025",
       "association": "Associated with Technical Higher Secondary School Perinthalmanna",
       "quote": "Bringing together electronics, mechanics, and programming into one robotic arm.",
       "description": "I built a robotic arm using Arduino, servo motors, and 3D-printed parts. This project brings together my interests in electronics, mechanics, and programming. The arm can pick and place small objects, be controlled precisely through Arduino, and show how robotics can be used in automation and education."
     },
-    { 
+    {
       "src": "/assets/Projects/1.jpg",
-      "images": ["/assets/Projects/1.jpg", "/assets/Projects/1.1.jpg", "/assets/Projects/1.2.jpeg"],
+      "images": [
+        "/assets/Projects/1.jpg",
+        "/assets/Projects/1.1.jpg",
+        "/assets/Projects/1.2.jpeg"
+      ],
       "title": "BPM (Heart Rate) Monitoring System",
       "date": "Nov 2025 – Nov 2025",
       "quote": "When electronics meet healthcare, monitoring becomes simple, smart, and stylish.",
       "description": "This project features a BPM (Beats Per Minute) Monitoring System created with Arduino and a pulse sensor, housed in a custom 3D-printed heart-shaped case. The case is fully customizable and can be found on Thingiverse, allowing anyone to print, assemble, and use it."
     },
-    { 
+    {
       "src": "/assets/Projects/2.jpg",
-      "images": ["/assets/Projects/2.jpg", "/assets/Projects/2.2.jpg", "/assets/Projects/2.1.jpg"],
+      "images": [
+        "/assets/Projects/2.jpg",
+        "/assets/Projects/2.2.jpg",
+        "/assets/Projects/2.1.jpg"
+      ],
       "title": "Smart Acid Rain Prediction System",
       "date": "Nov 2025 – Nov 2025",
       "quote": "Detecting danger before it reaches the ground, blending environmental science with electronics.",
@@ -61,7 +78,9 @@
     },
     {
       "src": "/assets/Projects/alexaa.jpg",
-      "images": ["/assets/Projects/alexaa.jpg"],
+      "images": [
+        "/assets/Projects/alexaa.jpg"
+      ],
       "title": "DIY Alexa – Voice Controlled Home Automation",
       "date": "Nov 2023 – Nov 2023",
       "quote": "Built my own Alexa from scratch — voice commands, custom PCB, and full home control.",
@@ -69,7 +88,9 @@
     },
     {
       "src": "/assets/Projects/smaart.jpg",
-      "images": ["/assets/Projects/smaart.jpg"],
+      "images": [
+        "/assets/Projects/smaart.jpg"
+      ],
       "title": "Smart Height Measurement System",
       "date": "Jan 2023 – Jan 2023",
       "association": "Associated with Technical Higher Secondary School Perinthalmanna",
@@ -78,7 +99,9 @@
     },
     {
       "src": "/assets/Projects/ldr.jpg",
-      "images": ["/assets/Projects/ldr.jpg"],
+      "images": [
+        "/assets/Projects/ldr.jpg"
+      ],
       "title": "Custom LDR Sensor Module",
       "date": "Sep 2024 – Sep 2024",
       "quote": "From schematic to PCB — a custom light sensor module built from scratch.",
@@ -86,7 +109,9 @@
     },
     {
       "src": "/assets/Projects/otto.jpg",
-      "images": ["/assets/Projects/otto.jpg"],
+      "images": [
+        "/assets/Projects/otto.jpg"
+      ],
       "title": "Otto Robot",
       "date": "Apr 2024 – Apr 2024",
       "association": "Associated with Technical Higher Secondary School Perinthalmanna",
@@ -95,7 +120,9 @@
     },
     {
       "src": "/assets/Projects/robo csae.jpg",
-      "images": ["/assets/Projects/robo csae.jpg"],
+      "images": [
+        "/assets/Projects/robo csae.jpg"
+      ],
       "title": "Robo Race Robot",
       "date": "Feb 2023 – Feb 2023",
       "quote": "Speed, agility, and precision — built to compete.",
@@ -103,7 +130,11 @@
     },
     {
       "src": "/assets/Projects/ar.jpg",
-      "images": ["/assets/Projects/ar.jpg", "/assets/Projects/aar1.jpg", "/assets/Projects/ar2.jpg"],
+      "images": [
+        "/assets/Projects/ar.jpg",
+        "/assets/Projects/aar1.jpg",
+        "/assets/Projects/ar2.jpg"
+      ],
       "title": "Arduino Uno Protective Case",
       "date": "Aug 2025 – Aug 2025",
       "quote": "3D-printed protection for your Arduino — functional, clean, and fully accessible.",
@@ -111,7 +142,11 @@
     },
     {
       "src": "/assets/Projects/ca.jpg",
-      "images": ["/assets/Projects/ca.jpg", "/assets/Projects/cas.jpg", "/assets/Projects/case.jpg"],
+      "images": [
+        "/assets/Projects/ca.jpg",
+        "/assets/Projects/cas.jpg",
+        "/assets/Projects/case.jpg"
+      ],
       "title": "HuskyLens Protective Case",
       "date": "Oct 2025 – Oct 2025",
       "quote": "Protect your AI vision module — durable, compact, and mount-ready.",
@@ -119,7 +154,10 @@
     },
     {
       "src": "/assets/Projects/1764080426222.jpg",
-      "images": ["/assets/Projects/1764080426222.jpg", "/assets/Projects/1764080424993.jpg"],
+      "images": [
+        "/assets/Projects/1764080426222.jpg",
+        "/assets/Projects/1764080424993.jpg"
+      ],
       "title": "3D Printed Resistor Organizer Box",
       "date": "Oct 2025 – Oct 2025",
       "quote": "Compact thinking — a custom-made organizer for the electronics workspace.",
@@ -127,7 +165,9 @@
     },
     {
       "src": "/assets/Projects/1760533643297.jpg",
-      "images": ["/assets/Projects/1760533643297.jpg"],
+      "images": [
+        "/assets/Projects/1760533643297.jpg"
+      ],
       "title": "Tools Organiser",
       "date": "Oct 2025 – Oct 2025",
       "quote": "A tidy workspace is a productive workspace — 3D printed and custom made.",
@@ -135,7 +175,11 @@
     },
     {
       "src": "/assets/Projects/k.jpg",
-      "images": ["/assets/Projects/k.jpg", "/assets/Projects/k1.jpg", "/assets/Projects/k3.jpg"],
+      "images": [
+        "/assets/Projects/k.jpg",
+        "/assets/Projects/k1.jpg",
+        "/assets/Projects/k3.jpg"
+      ],
       "title": "Keyboard Height Extender",
       "date": "Oct 2025 – Oct 2025",
       "quote": "Better posture, better typing — a simple 3D-printed ergonomic fix.",
@@ -231,20 +275,60 @@
     "bioParagraph1": "I have recently completed my higher secondary education and am an aspiring robotics and embedded systems engineer, passionate about building real-world solutions through hands-on innovation.",
     "bioParagraph2": "I specialize in developing functional robotics systems, 3D printed designs, and actively mentor students in STEM, embedded systems, and Arduino programming.",
     "skills": [
-      { "icon": "Cpu", "label": "Embedded Systems" },
-      { "icon": "Settings", "label": "Robotics" },
-      { "icon": "Code", "label": "Arduino" },
-      { "icon": "Box", "label": "3D Printing" },
-      { "icon": "BookOpen", "label": "STEM Education" },
-      { "icon": "Users", "label": "Mentoring" },
-      { "icon": "Printer", "label": "CAD Design" },
-      { "icon": "Rocket", "label": "Prototyping" }
+      {
+        "icon": "Cpu",
+        "label": "Embedded Systems"
+      },
+      {
+        "icon": "Settings",
+        "label": "Robotics"
+      },
+      {
+        "icon": "Code",
+        "label": "Arduino"
+      },
+      {
+        "icon": "Box",
+        "label": "3D Printing"
+      },
+      {
+        "icon": "BookOpen",
+        "label": "STEM Education"
+      },
+      {
+        "icon": "Users",
+        "label": "Mentoring"
+      },
+      {
+        "icon": "Printer",
+        "label": "CAD Design"
+      },
+      {
+        "icon": "Rocket",
+        "label": "Prototyping"
+      }
     ],
     "stats": [
-      { "end": 30, "suffix": "+", "label": "Projects Built" },
-      { "end": 6, "suffix": "", "label": "Certifications" },
-      { "end": 7, "suffix": "", "label": "Awards" },
-      { "end": 2, "suffix": "+", "label": "Years Learning" }
+      {
+        "end": 30,
+        "suffix": "+",
+        "label": "Projects Built"
+      },
+      {
+        "end": 6,
+        "suffix": "",
+        "label": "Certifications"
+      },
+      {
+        "end": 7,
+        "suffix": "",
+        "label": "Awards"
+      },
+      {
+        "end": 2,
+        "suffix": "+",
+        "label": "Years Learning"
+      }
     ]
   },
   "contact": {

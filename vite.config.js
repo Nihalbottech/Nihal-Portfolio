@@ -2,6 +2,7 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import fs from 'fs'
 import path from 'path'
+import { exec } from 'child_process'
 
 function adminApiPlugin() {
   return {
@@ -25,6 +26,15 @@ function adminApiPlugin() {
           
           // data should be the full content object (hero, projects, awards)
           fs.writeFileSync(contentPath, JSON.stringify(data, null, 2));
+
+          // Auto-push to GitHub so Vercel updates automatically
+          exec('git add . && git commit -m "CMS Auto-Update" && git push', (error, stdout, stderr) => {
+            if (error) {
+              console.error('Auto-push failed or nothing to commit:', error.message);
+            } else {
+              console.log('Auto-push successful! Vercel will rebuild now.');
+            }
+          });
 
           res.setHeader('Content-Type', 'application/json');
           res.end(JSON.stringify({ success: true }));

@@ -124,14 +124,15 @@ const Projects = () => {
             
             {/* Top Right Close */}
             <button 
-              className="absolute top-6 right-6 w-12 h-12 rounded-full bg-white/10 hover:bg-red-500/90 border border-white/20 hover:border-red-500 flex items-center justify-center text-white transition-all pointer-events-auto shadow-lg z-[110]"
+              className="fixed top-6 right-6 md:top-8 md:right-8 px-4 h-12 rounded-full bg-white/10 hover:bg-red-500/90 border border-white/20 hover:border-red-500 flex items-center justify-center space-x-2 text-white transition-all pointer-events-auto shadow-lg z-[120]"
               onClick={(e) => {
                 e.stopPropagation();
                 setActiveIndex(null);
               }}
               title="Close"
             >
-              <X size={24} strokeWidth={2} />
+              <X size={20} strokeWidth={2} />
+              <span className="font-medium pr-1 text-sm tracking-wide">Back</span>
             </button>
 
             {/* Media Container */}
