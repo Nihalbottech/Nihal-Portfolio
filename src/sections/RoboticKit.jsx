@@ -56,47 +56,49 @@ const RoboticKit = () => {
   };
 
   return (
-    <section id="robotickit" className="py-24 bg-surface border-b border-borderLine relative z-10 overflow-hidden">
-      {/* Ambient glow */}
-      <div className="absolute top-0 right-1/3 w-[400px] h-[400px] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
+    <>
+      <section id="robotickit" className="py-24 bg-surface border-b border-borderLine relative z-10 overflow-hidden">
+        {/* Ambient glow */}
+        <div className="absolute top-0 right-1/3 w-[400px] h-[400px] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
 
-      <div className="container mx-auto px-6 max-w-7xl relative">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-12 flex items-end justify-between"
-        >
-          <div>
-            <h2 className="text-sm font-semibold tracking-widest text-muted uppercase mb-3">Hardware Arsenal</h2>
-            <h3 className="text-3xl font-display font-bold text-text flex items-center gap-3">
-              <span className="w-10 h-10 rounded-xl bg-background border border-borderLine flex items-center justify-center">
-                <Cpu className="w-5 h-5 text-primary" />
-              </span>
-              Robotic Kit
-            </h3>
-          </div>
-          <div className="hidden md:flex items-center space-x-2 px-4 py-2 bg-background border border-borderLine rounded-full text-muted text-sm">
-            <span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-            <span>{kitImages.length} components</span>
-          </div>
-        </motion.div>
+        <div className="container mx-auto px-6 max-w-7xl relative">
+          {/* Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="mb-12 flex items-end justify-between"
+          >
+            <div>
+              <h2 className="text-sm font-semibold tracking-widest text-muted uppercase mb-3">Hardware Arsenal</h2>
+              <h3 className="text-3xl font-display font-bold text-text flex items-center gap-3">
+                <span className="w-10 h-10 rounded-xl bg-background border border-borderLine flex items-center justify-center">
+                  <Cpu className="w-5 h-5 text-primary" />
+                </span>
+                Robotic Kit
+              </h3>
+            </div>
+            <div className="hidden md:flex items-center space-x-2 px-4 py-2 bg-background border border-borderLine rounded-full text-muted text-sm">
+              <span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+              <span>{kitImages.length} components</span>
+            </div>
+          </motion.div>
 
-        {/* Grid Layout for 3 Items */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
-        >
-          {kitImages.map((src, index) => (
-            <KitCard key={index} image={src} index={index} onClick={setActiveIndex} />
-          ))}
-        </motion.div>
-      </div>
+          {/* Grid Layout for 3 Items */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+          >
+            {kitImages.map((src, index) => (
+              <KitCard key={index} image={src} index={index} onClick={setActiveIndex} />
+            ))}
+          </motion.div>
+        </div>
+      </section>
 
       {/* Lightbox Modal */}
       <AnimatePresence>
@@ -152,7 +154,7 @@ const RoboticKit = () => {
           </motion.div>
         )}
       </AnimatePresence>
-    </section>
+    </>
   );
 };
 

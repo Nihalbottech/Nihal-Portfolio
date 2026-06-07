@@ -50,7 +50,7 @@ function Portfolio() {
         <div className="pattern-bg"></div>
         <Navbar activeSection={activeSection} />
       
-      <main className="relative z-10">
+      <main className="relative">
         <Hero />
         <About />
         <Skills />

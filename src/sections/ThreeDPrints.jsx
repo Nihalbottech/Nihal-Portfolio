@@ -67,49 +67,51 @@ const ThreeDPrints = () => {
   };
 
   return (
-    <section id="3dprints" className="py-24 bg-surface border-b border-borderLine relative z-10 overflow-hidden">
+    <>
+      <section id="3dprints" className="py-24 bg-surface border-b border-borderLine relative z-10 overflow-hidden">
 
-      {/* Ambient glow */}
-      <div className="absolute top-0 left-1/3 w-[400px] h-[400px] bg-accent/5 rounded-full blur-[120px] pointer-events-none" />
+        {/* Ambient glow */}
+        <div className="absolute top-0 left-1/3 w-[400px] h-[400px] bg-accent/5 rounded-full blur-[120px] pointer-events-none" />
 
-      <div className="container mx-auto px-6 max-w-7xl relative">
+        <div className="container mx-auto px-6 max-w-7xl relative">
 
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-12 flex items-end justify-between"
-        >
-          <div>
-            <h2 className="text-sm font-semibold tracking-widest text-muted uppercase mb-3">Design Portfolio</h2>
-            <h3 className="text-3xl font-display font-bold text-text flex items-center gap-3">
-              <span className="w-10 h-10 rounded-xl bg-background border border-borderLine flex items-center justify-center">
-                <Box className="w-5 h-5 text-accent" />
-              </span>
-              3D designs
-            </h3>
-          </div>
-          <div className="hidden md:flex items-center space-x-2 px-4 py-2 bg-background border border-borderLine rounded-full text-muted text-sm">
-            <span className="w-2 h-2 rounded-full bg-accent animate-pulse"></span>
-            <span>{prints.length} designs</span>
-          </div>
-        </motion.div>
+          {/* Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="mb-12 flex items-end justify-between"
+          >
+            <div>
+              <h2 className="text-sm font-semibold tracking-widest text-muted uppercase mb-3">Design Portfolio</h2>
+              <h3 className="text-3xl font-display font-bold text-text flex items-center gap-3">
+                <span className="w-10 h-10 rounded-xl bg-background border border-borderLine flex items-center justify-center">
+                  <Box className="w-5 h-5 text-accent" />
+                </span>
+                3D designs
+              </h3>
+            </div>
+            <div className="hidden md:flex items-center space-x-2 px-4 py-2 bg-background border border-borderLine rounded-full text-muted text-sm">
+              <span className="w-2 h-2 rounded-full bg-accent animate-pulse"></span>
+              <span>{prints.length} designs</span>
+            </div>
+          </motion.div>
 
-        {/* Masonry Grid */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-5"
-        >
-          {prints.map((src, index) => (
-            <PrintCard key={index} image={src} index={index} onClick={setActiveIndex} />
-          ))}
-        </motion.div>
-      </div>
+          {/* Masonry Grid */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-5"
+          >
+            {prints.map((src, index) => (
+              <PrintCard key={index} image={src} index={index} onClick={setActiveIndex} />
+            ))}
+          </motion.div>
+        </div>
+      </section>
 
       {/* Lightbox Modal */}
       <AnimatePresence>
@@ -165,7 +167,7 @@ const ThreeDPrints = () => {
           </motion.div>
         )}
       </AnimatePresence>
-    </section>
+    </>
   );
 };
 

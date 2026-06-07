@@ -84,31 +84,33 @@ const Projects = () => {
   const activeProject = activeIndex !== null ? projectsData[activeIndex] : null;
 
   return (
-    <section id="projects" className="py-24 bg-background border-b border-borderLine relative z-10">
-      <div className="container mx-auto px-6 max-w-7xl">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.6 }}
-        >
-          <div className="mb-12">
-            <h2 className="text-sm font-semibold tracking-widest text-muted uppercase mb-3">Portfolio</h2>
-            <h3 className="text-3xl font-display font-bold text-text">Featured Engineering Projects</h3>
-          </div>
+    <>
+      <section id="projects" className="py-24 bg-background border-b border-borderLine relative z-10">
+        <div className="container mx-auto px-6 max-w-7xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="mb-12">
+              <h2 className="text-sm font-semibold tracking-widest text-muted uppercase mb-3">Portfolio</h2>
+              <h3 className="text-3xl font-display font-bold text-text">Featured Engineering Projects</h3>
+            </div>
 
-          <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-6 space-y-6">
-            {projectsData.map((project, index) => (
-              <ProjectCard 
-                key={index}
-                index={index}
-                project={project}
-                onClick={setActiveIndex}
-              />
-            ))}
-          </div>
-        </motion.div>
-      </div>
+            <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-6 space-y-6">
+              {projectsData.map((project, index) => (
+                <ProjectCard 
+                  key={index}
+                  index={index}
+                  project={project}
+                  onClick={setActiveIndex}
+                />
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
 
       {/* Sleek Focused Media Modal */}
       <AnimatePresence>
@@ -210,12 +212,10 @@ const Projects = () => {
               </motion.div>
             )}
 
-
-
           </motion.div>
         )}
       </AnimatePresence>
-    </section>
+    </>
   );
 };
 

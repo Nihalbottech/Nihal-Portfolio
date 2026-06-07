@@ -65,36 +65,38 @@ const Certificates = () => {
   };
 
   return (
-    <section id="certificates" className="py-24 bg-background border-b border-borderLine relative z-10">
-      <div className="container mx-auto px-6 max-w-7xl">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.6 }}
-        >
-          <div className="mb-12 flex items-center space-x-4">
-            <div>
-              <h2 className="text-sm font-semibold tracking-widest text-muted uppercase mb-3">Qualifications</h2>
-              <h3 className="text-3xl font-display font-bold text-text">Professional Certificates</h3>
+    <>
+      <section id="certificates" className="py-24 bg-background border-b border-borderLine relative z-10">
+        <div className="container mx-auto px-6 max-w-7xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="mb-12 flex items-center space-x-4">
+              <div>
+                <h2 className="text-sm font-semibold tracking-widest text-muted uppercase mb-3">Qualifications</h2>
+                <h3 className="text-3xl font-display font-bold text-text">Professional Certificates</h3>
+              </div>
+              <div className="hidden md:flex ml-auto w-16 h-16 rounded-2xl bg-surface border border-borderLine items-center justify-center shadow-lg">
+                 <Award className="text-primary w-8 h-8" />
+              </div>
             </div>
-            <div className="hidden md:flex ml-auto w-16 h-16 rounded-2xl bg-surface border border-borderLine items-center justify-center shadow-lg">
-               <Award className="text-primary w-8 h-8" />
-            </div>
-          </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {certificates.map((cert, index) => (
-              <CertificateCard 
-                key={index}
-                index={index}
-                image={cert}
-                onClick={setActiveIndex}
-              />
-            ))}
-          </div>
-        </motion.div>
-      </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {certificates.map((cert, index) => (
+                <CertificateCard 
+                  key={index}
+                  index={index}
+                  image={cert}
+                  onClick={setActiveIndex}
+                />
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
 
       {/* Sleek Lightbox Modal */}
       <AnimatePresence>
@@ -164,7 +166,7 @@ const Certificates = () => {
           </motion.div>
         )}
       </AnimatePresence>
-    </section>
+    </>
   );
 };
 

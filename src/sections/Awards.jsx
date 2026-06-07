@@ -81,35 +81,37 @@ const Awards = () => {
   const activeAward = activeIndex !== null ? awardsData[activeIndex] : null;
 
   return (
-    <section id="awards" className="py-24 bg-surface/30 border-b border-borderLine relative z-10">
-      <div className="container mx-auto px-6 max-w-7xl">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.6 }}
-        >
-          <div className="mb-12">
-            <h2 className="text-sm font-semibold tracking-widest text-muted uppercase mb-3">Recognition</h2>
-            <h3 className="text-3xl font-display font-bold text-text">Awards & Achievements</h3>
-          </div>
+    <>
+      <section id="awards" className="py-24 bg-surface/30 border-b border-borderLine relative z-10">
+        <div className="container mx-auto px-6 max-w-7xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="mb-12">
+              <h2 className="text-sm font-semibold tracking-widest text-muted uppercase mb-3">Recognition</h2>
+              <h3 className="text-3xl font-display font-bold text-text">Awards & Achievements</h3>
+            </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {awardsData.map((award, index) => (
-              <AwardCard 
-                key={index}
-                index={index}
-                title={award.title}
-                event={award.event}
-                desc={award.desc}
-                icon={award.icon}
-                image={award.image}
-                onClick={setActiveIndex}
-              />
-            ))}
-          </div>
-        </motion.div>
-      </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {awardsData.map((award, index) => (
+                <AwardCard 
+                  key={index}
+                  index={index}
+                  title={award.title}
+                  event={award.event}
+                  desc={award.desc}
+                  iconName={award.icon}
+                  image={award.image}
+                  onClick={setActiveIndex}
+                />
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
 
       {/* Lightbox Modal for Awards */}
       <AnimatePresence>
@@ -149,9 +151,10 @@ const Awards = () => {
                 alt={awardsData[activeIndex].title} 
                 className="w-auto h-auto max-w-full max-h-[60vh] object-contain rounded-t-2xl bg-black/50"
               />
-              <div className="p-6 w-full text-center border-t border-borderLine bg-surface/90 backdrop-blur-sm">
-                <h4 className="text-xl font-bold text-text mb-1">{awardsData[activeIndex].title}</h4>
-                <p className="text-primary text-sm font-semibold">{awardsData[activeIndex].event}</p>
+              <div className="w-full bg-surface border-t border-borderLine p-6 flex flex-col items-center text-center">
+                <h3 className="text-xl font-bold text-text mb-2">{awardsData[activeIndex].title}</h3>
+                <p className="text-primary font-semibold text-sm">{awardsData[activeIndex].event}</p>
+                <p className="text-muted mt-2 text-sm">{awardsData[activeIndex].desc}</p>
               </div>
             </motion.div>
 
@@ -181,7 +184,7 @@ const Awards = () => {
           </motion.div>
         )}
       </AnimatePresence>
-    </section>
+    </>
   );
 };
 
