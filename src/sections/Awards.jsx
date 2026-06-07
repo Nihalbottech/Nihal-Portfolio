@@ -136,27 +136,40 @@ const Awards = () => {
               <X size={24} strokeWidth={2} />
             </button>
 
-            {/* Media Container */}
-            <motion.div 
-              key={activeIndex}
-              initial={{ opacity: 0, scale: 0.95, y: 10 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: -10 }}
-              transition={{ type: "spring", damping: 25, stiffness: 300 }}
-              className="relative w-auto h-auto max-w-[95vw] max-h-[75vh] rounded-2xl overflow-hidden shadow-2xl border border-borderLine flex flex-col items-center justify-center bg-surface z-[105]"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <img 
-                src={awardsData[activeIndex].image} 
-                alt={awardsData[activeIndex].title} 
-                className="w-auto h-auto max-w-full max-h-[60vh] object-contain rounded-t-2xl bg-black/50"
-              />
-              <div className="w-full bg-surface border-t border-borderLine p-6 flex flex-col items-center text-center">
-                <h3 className="text-xl font-bold text-text mb-2">{awardsData[activeIndex].title}</h3>
-                <p className="text-primary font-semibold text-sm">{awardsData[activeIndex].event}</p>
-                <p className="text-muted mt-2 text-sm">{awardsData[activeIndex].desc}</p>
-              </div>
-            </motion.div>
+            <div className="flex flex-col md:flex-row items-center justify-center z-[105] max-h-full" onClick={(e) => e.stopPropagation()}>
+              {/* Media Container */}
+              <motion.div 
+                key={`media-${activeIndex}`}
+                initial={{ opacity: 0, scale: 0.95, y: 10 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95, y: -10 }}
+                transition={{ type: "spring", damping: 25, stiffness: 300 }}
+                className="relative w-auto h-auto max-w-[95vw] md:max-w-[60vw] max-h-[75vh] rounded-2xl overflow-hidden shadow-2xl border border-white/20 flex flex-col items-center justify-center bg-black/50"
+              >
+                <img 
+                  src={awardsData[activeIndex].image} 
+                  alt={awardsData[activeIndex].title} 
+                  className="w-auto h-auto max-w-full max-h-[75vh] object-contain rounded-2xl"
+                />
+              </motion.div>
+
+              {/* Text Sidebar */}
+              <motion.div 
+                key={`text-${activeIndex}`}
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="w-full md:w-[400px] mt-6 md:mt-0 md:ml-8 bg-surface/10 backdrop-blur-xl border border-white/20 rounded-2xl p-8 z-[105]"
+              >
+                <h3 className="text-3xl font-display font-bold text-white mb-2">{awardsData[activeIndex].title}</h3>
+                <p className="text-primary font-semibold tracking-wider text-sm mb-6 uppercase">{awardsData[activeIndex].event}</p>
+                {awardsData[activeIndex].desc && (
+                  <div className="text-white/80 leading-relaxed text-sm border-l-2 border-primary/50 pl-4">
+                    {awardsData[activeIndex].desc}
+                  </div>
+                )}
+              </motion.div>
+            </div>
 
             {/* Elegant Bottom Pagination Controls */}
             <div 
