@@ -55,73 +55,87 @@ const AwardsEditor = ({ data, onChange, onSave, saving, toBase64 }) => {
   };
 
   return (
-    <div className="space-y-6">
-      <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-bold">Manage Awards</h2>
-        <button onClick={handleAddAward} className="flex items-center space-x-2 bg-primary/20 text-primary px-4 py-2 rounded-lg font-semibold hover:bg-primary/30 transition">
+    <div className="max-w-4xl mx-auto space-y-6">
+      <div className="flex justify-between items-center mb-8 px-2">
+        <div>
+          <h2 className="text-2xl font-bold text-gray-900">Manage Awards</h2>
+          <p className="text-sm text-gray-500 mt-1">Add, edit, or reorder your awards and achievements</p>
+        </div>
+        <button onClick={handleAddAward} className="flex items-center space-x-2 bg-gray-900 text-white px-5 py-2.5 rounded-xl font-bold hover:bg-gray-800 hover:shadow-lg hover:shadow-gray-900/20 transition-all duration-300">
           <Plus size={18} />
           <span>Add Award</span>
         </button>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-5">
         {data.map((award, index) => (
-          <motion.div key={index} layout className="bg-surface border border-borderLine rounded-xl overflow-hidden">
+          <motion.div key={index} layout className="bg-white border border-gray-200 shadow-sm rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-md">
             <div 
-              className="flex justify-between items-center p-4 cursor-pointer hover:bg-white/5 transition"
+              className={`flex justify-between items-center p-5 cursor-pointer transition-colors ${expandedIndex === index ? 'bg-gray-50' : 'hover:bg-gray-50'}`}
               onClick={() => setExpandedIndex(expandedIndex === index ? null : index)}
             >
-              <div className="flex items-center space-x-4">
+              <div className="flex items-center space-x-5">
                 {award.image ? (
-                  <img src={award.image} alt="" className="w-12 h-12 object-cover rounded-md" />
+                  <img src={award.image} alt="" className="w-14 h-14 object-cover rounded-xl border border-gray-200 shadow-sm" />
                 ) : (
-                  <div className="w-12 h-12 bg-black/20 rounded-md flex items-center justify-center text-muted"><ImageIcon size={20} /></div>
+                  <div className="w-14 h-14 bg-gray-100 rounded-xl flex items-center justify-center border border-gray-200 text-gray-400"><ImageIcon size={24} /></div>
                 )}
                 <div>
-                  <h3 className="font-bold text-lg">{award.title || 'Untitled Award'}</h3>
-                  <p className="text-xs text-muted">{award.event || 'No event specified'}</p>
+                  <h3 className="font-bold text-lg text-gray-900">{award.title || 'Untitled Award'}</h3>
+                  <p className="text-xs font-medium text-gray-500 mt-0.5">{award.event || 'No event specified'}</p>
                 </div>
               </div>
               <button 
                 onClick={(e) => { e.stopPropagation(); handleRemoveAward(index); }} 
-                className="p-2 text-red-500 hover:bg-red-500/20 rounded-lg transition"
+                className="p-2.5 text-red-500 hover:bg-red-50 hover:text-red-600 rounded-xl transition-colors"
+                title="Delete Award"
               >
                 <Trash2 size={18} />
               </button>
             </div>
 
             {expandedIndex === index && (
-              <div className="p-6 pt-2 border-t border-borderLine grid grid-cols-1 md:grid-cols-2 gap-6 bg-black/10">
-                <div className="space-y-4">
+              <div className="p-6 md:p-8 border-t border-gray-100 grid grid-cols-1 md:grid-cols-2 gap-8 bg-white">
+                <div className="space-y-5">
                   <div>
-                    <label className="block text-xs text-muted mb-1">Title</label>
-                    <input type="text" value={award.title || ''} onChange={(e) => handleChange(index, 'title', e.target.value)} className="w-full bg-background border border-borderLine rounded-lg p-2 text-sm" />
+                    <label className="block text-xs font-bold text-gray-600 uppercase tracking-wide mb-2">Title</label>
+                    <input type="text" value={award.title || ''} onChange={(e) => handleChange(index, 'title', e.target.value)} className="w-full bg-gray-50 border border-gray-200 text-gray-900 font-medium rounded-xl p-3 focus:ring-2 focus:ring-primary/20 focus:border-primary focus:outline-none transition-all" />
                   </div>
                   <div>
-                    <label className="block text-xs text-muted mb-1">Event Name</label>
-                    <input type="text" value={award.event || ''} onChange={(e) => handleChange(index, 'event', e.target.value)} className="w-full bg-background border border-borderLine rounded-lg p-2 text-sm" />
+                    <label className="block text-xs font-bold text-gray-600 uppercase tracking-wide mb-2">Event Name</label>
+                    <input type="text" value={award.event || ''} onChange={(e) => handleChange(index, 'event', e.target.value)} className="w-full bg-gray-50 border border-gray-200 text-gray-900 font-medium rounded-xl p-3 focus:ring-2 focus:ring-primary/20 focus:border-primary focus:outline-none transition-all" />
                   </div>
                   <div>
-                    <label className="block text-xs text-muted mb-1">Icon Name (Trophy, Star, Award)</label>
-                    <select value={award.icon || 'Star'} onChange={(e) => handleChange(index, 'icon', e.target.value)} className="w-full bg-background border border-borderLine rounded-lg p-2 text-sm text-text">
+                    <label className="block text-xs font-bold text-gray-600 uppercase tracking-wide mb-2">Icon Name</label>
+                    <select value={award.icon || 'Star'} onChange={(e) => handleChange(index, 'icon', e.target.value)} className="w-full bg-gray-50 border border-gray-200 text-gray-900 font-medium rounded-xl p-3 focus:ring-2 focus:ring-primary/20 focus:border-primary focus:outline-none transition-all">
                       <option value="Trophy">Trophy</option>
                       <option value="Star">Star</option>
                       <option value="Award">Award</option>
                     </select>
                   </div>
                   <div>
-                    <label className="block text-xs text-muted mb-1">Description</label>
-                    <textarea value={award.desc || ''} onChange={(e) => handleChange(index, 'desc', e.target.value)} className="w-full bg-background border border-borderLine rounded-lg p-2 text-sm" rows={4} />
+                    <label className="block text-xs font-bold text-gray-600 uppercase tracking-wide mb-2">Description</label>
+                    <textarea value={award.desc || ''} onChange={(e) => handleChange(index, 'desc', e.target.value)} className="w-full bg-gray-50 border border-gray-200 text-gray-900 font-medium rounded-xl p-3 focus:ring-2 focus:ring-primary/20 focus:border-primary focus:outline-none transition-all resize-none" rows={4} />
                   </div>
                 </div>
 
-                <div className="space-y-4">
+                <div className="space-y-8 bg-gray-50/50 p-6 rounded-2xl border border-gray-100 h-max">
                   <div>
-                    <label className="block text-xs text-muted mb-2">Award Image</label>
-                    <div className="flex items-center space-x-4">
-                      {award.image && <img src={award.image} className="h-24 rounded object-cover border border-borderLine" />}
-                      <label className="cursor-pointer bg-primary/20 text-primary px-3 py-1.5 rounded-lg text-sm hover:bg-primary/30">
-                        {uploadingIdx === index ? 'Uploading...' : 'Upload Image'}
+                    <label className="block text-xs font-bold text-gray-600 uppercase tracking-wide mb-3">Award Image</label>
+                    <div className="flex flex-col space-y-4">
+                      {award.image ? (
+                        <div className="relative group">
+                           <img src={award.image} className="w-full h-48 rounded-xl object-cover border border-gray-200 shadow-sm" />
+                        </div>
+                      ) : (
+                        <div className="w-full h-48 rounded-xl border-2 border-dashed border-gray-300 bg-gray-50 flex items-center justify-center text-gray-400">
+                           <span>No Image Provided</span>
+                        </div>
+                      )}
+                      
+                      <label className="cursor-pointer flex items-center justify-center space-x-2 bg-white border border-gray-200 text-gray-700 font-semibold px-4 py-3 rounded-xl text-sm hover:bg-gray-50 hover:border-gray-300 transition-all shadow-sm w-full">
+                        <ImageIcon size={16} />
+                        <span>{uploadingIdx === index ? 'Uploading...' : 'Upload Award Image'}</span>
                         <input type="file" accept="image/*" className="hidden" onChange={(e) => e.target.files[0] && handleUploadFile(index, e.target.files[0])} />
                       </label>
                     </div>
@@ -133,10 +147,10 @@ const AwardsEditor = ({ data, onChange, onSave, saving, toBase64 }) => {
         ))}
       </div>
 
-      <div className="pt-6 border-t border-borderLine">
-        <button onClick={onSave} disabled={saving} className="flex items-center justify-center space-x-2 w-full max-w-md ml-auto bg-primary text-white font-semibold py-3 rounded-xl hover:shadow-lg hover:shadow-primary/30 transition-all disabled:opacity-50">
+      <div className="pt-8 pb-4 mt-8 border-t border-gray-200 flex justify-end">
+        <button onClick={onSave} disabled={saving} className="flex items-center justify-center space-x-2 px-8 py-3.5 bg-gray-900 text-white font-bold rounded-xl hover:bg-gray-800 hover:shadow-lg hover:shadow-gray-900/20 transition-all duration-300 disabled:opacity-50">
           {saving ? <Loader2 className="w-5 h-5 animate-spin" /> : <Save className="w-5 h-5" />}
-          <span>{saving ? 'Saving Awards...' : 'Save Awards List'}</span>
+          <span>{saving ? 'Saving Awards...' : 'Save All Awards'}</span>
         </button>
       </div>
     </div>
