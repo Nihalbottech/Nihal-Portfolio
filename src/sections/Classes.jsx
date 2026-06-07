@@ -52,7 +52,6 @@ const Classes = () => {
   };
 
   return (
-  return (
     <>
       <section id="classes" className="py-24 bg-background border-b border-borderLine relative z-10 overflow-hidden">
         
