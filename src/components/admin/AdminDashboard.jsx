@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { LogOut, Loader2, Layout, FolderKanban, Award, User, Mail, Settings, ShieldCheck } from 'lucide-react';
+import { LogOut, Loader2, Layout, FolderKanban, Award, User, Mail, Settings, ShieldCheck, KeyRound } from 'lucide-react';
 import contentData from '../../data/content.json';
 import HeroEditor from './HeroEditor';
 import ProjectsEditor from './ProjectsEditor';
@@ -8,6 +8,7 @@ import AwardsEditor from './AwardsEditor';
 import AboutEditor from './AboutEditor';
 import ContactEditor from './ContactEditor';
 import AdvancedEditor from './AdvancedEditor';
+import SecurityEditor from './SecurityEditor';
 
 const toBase64 = file => new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -82,6 +83,7 @@ const AdminDashboard = () => {
     { id: 'awards', label: 'Awards', icon: <Award size={18} /> },
     { id: 'contact', label: 'Contact', icon: <Mail size={18} /> },
     { id: 'advanced', label: 'Advanced', icon: <Settings size={18} /> },
+    { id: 'security', label: 'Security', icon: <KeyRound size={18} /> },
   ];
 
   return (
@@ -208,6 +210,10 @@ const AdminDashboard = () => {
               onSave={handleSaveAll}
               saving={saving}
             />
+          )}
+
+          {activeTab === 'security' && (
+            <SecurityEditor />
           )}
         </div>
       </div>

@@ -45,6 +45,51 @@ function adminApiPlugin() {
         }
       });
 
+      server.middlewares.use('/api/login', async (req, res) => {
+        if (req.method !== 'POST') return res.end();
+        try {
+          const { email, password } = await readBody(req);
+          const credsPath = path.resolve(__dirname, 'src/data/admin-credentials.json');
+          
+          let validEmail = 'admin@example.com';
+          let validPass = 'admin123';
+
+          if (fs.existsSync(credsPath)) {
+            const creds = JSON.parse(fs.readFileSync(credsPath, 'utf8'));
+            validEmail = creds.email;
+            validPass = creds.password;
+          }
+
+          if (email === validEmail && password === validPass) {
+            res.setHeader('Content-Type', 'application/json');
+            res.end(JSON.stringify({ success: true }));
+          } else {
+            res.statusCode = 401;
+            res.setHeader('Content-Type', 'application/json');
+            res.end(JSON.stringify({ error: 'Invalid credentials' }));
+          }
+        } catch (err) {
+          res.statusCode = 500;
+          res.end(JSON.stringify({ error: err.message }));
+        }
+      });
+
+      server.middlewares.use('/api/update-credentials', async (req, res) => {
+        if (req.method !== 'POST') return res.end();
+        try {
+          const { email, password } = await readBody(req);
+          const credsPath = path.resolve(__dirname, 'src/data/admin-credentials.json');
+          
+          fs.writeFileSync(credsPath, JSON.stringify({ email, password }, null, 2));
+
+          res.setHeader('Content-Type', 'application/json');
+          res.end(JSON.stringify({ success: true }));
+        } catch (err) {
+          res.statusCode = 500;
+          res.end(JSON.stringify({ error: err.message }));
+        }
+      });
+
       server.middlewares.use('/api/upload', async (req, res) => {
         if (req.method !== 'POST') return res.end();
         try {

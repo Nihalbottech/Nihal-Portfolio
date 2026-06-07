@@ -15,17 +15,25 @@ const AdminLogin = () => {
     setError('');
     setLoading(true);
 
-    // Simulate network delay
-    await new Promise(resolve => setTimeout(resolve, 500));
+    try {
+      const response = await fetch('/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+      });
 
-    if (password === 'admin123') {
-      localStorage.setItem('adminLoggedIn', 'true');
-      navigate('/admin/dashboard');
-    } else {
-      setError('Invalid password. Hint: try admin123');
+      if (response.ok) {
+        localStorage.setItem('adminLoggedIn', 'true');
+        navigate('/admin/dashboard');
+      } else {
+        const data = await response.json();
+        setError(data.error || 'Invalid credentials.');
+      }
+    } catch (err) {
+      setError('Could not connect to local server. Make sure you are running this locally.');
+    } finally {
+      setLoading(false);
     }
-    
-    setLoading(false);
   };
 
   return (
@@ -92,7 +100,7 @@ const AdminLogin = () => {
         </form>
         
         <div className="mt-6 text-center text-xs text-muted">
-           <p>Note: Local Dashboard Mode. Password is <strong>admin123</strong>.</p>
+           <p>Note: Secured by local credentials. The dashboard is disabled on Vercel.</p>
         </div>
       </motion.div>
     </div>
