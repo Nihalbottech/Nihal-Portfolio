@@ -1,11 +1,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Phone } from 'lucide-react';
+import { Mail, ArrowRight, MessageSquare, Phone } from 'lucide-react';
+import { usePortfolio } from '../context/PortfolioContext';
 import SocialFlipButton from '../components/ui/social-flip-button';
-import contentData from '../data/content.json';
 
 const Contact = () => {
-  const contactData = contentData.contact;
+  const { data } = usePortfolio();
+  const { contact } = data;
 
   return (
     <section id="contact" className="py-24 bg-surface border-b border-borderLine relative z-10 overflow-hidden">
@@ -25,22 +26,22 @@ const Contact = () => {
           </p>
 
           <div className="flex flex-col md:flex-row items-center justify-center gap-6 w-full mb-12">
-            <a href={`mailto:${contactData.email}`} className="flex items-center w-full md:w-auto p-4 md:px-8 md:py-5 bg-background rounded-2xl border border-borderLine hover:border-primary/50 hover:bg-primary/5 transition-all group">
+            <a href={`mailto:${contact.email}`} className="flex items-center w-full md:w-auto p-4 md:px-8 md:py-5 bg-background rounded-2xl border border-borderLine hover:border-primary/50 hover:bg-primary/5 transition-all group">
               <div className="w-12 h-12 rounded-xl bg-surface flex items-center justify-center mr-5 border border-borderLine group-hover:border-primary/30 transition-colors">
                 <Mail size={22} className="text-muted group-hover:text-primary transition-colors" />
               </div>
               <div className="text-left">
                 <p className="text-sm text-muted mb-1 uppercase tracking-wider font-semibold">Email Me</p>
-                <span className="font-medium text-text text-lg">{contactData.email}</span>
+                <span className="font-medium text-text text-lg">{contact.email}</span>
               </div>
             </a>
-            <a href={contactData.whatsappUrl} target="_blank" rel="noopener noreferrer" className="flex items-center w-full md:w-auto p-4 md:px-8 md:py-5 bg-background rounded-2xl border border-borderLine hover:border-green-500/50 hover:bg-green-500/5 transition-all group">
+            <a href={contact.whatsappUrl} target="_blank" rel="noopener noreferrer" className="flex items-center w-full md:w-auto p-4 md:px-8 md:py-5 bg-background rounded-2xl border border-borderLine hover:border-green-500/50 hover:bg-green-500/5 transition-all group">
               <div className="w-12 h-12 rounded-xl bg-surface flex items-center justify-center mr-5 border border-borderLine group-hover:border-green-500/30 transition-colors">
                 <Phone size={22} className="text-muted group-hover:text-green-500 transition-colors" />
               </div>
               <div className="text-left">
                 <p className="text-sm text-muted mb-1 uppercase tracking-wider font-semibold">Call / WhatsApp</p>
-                <span className="font-medium text-text text-lg">{contactData.phone}</span>
+                <span className="font-medium text-text text-lg">{contact.phone}</span>
               </div>
             </a>
           </div>

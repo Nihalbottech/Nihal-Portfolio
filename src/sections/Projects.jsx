@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Play, ChevronLeft, ChevronRight } from 'lucide-react';
-import contentData from '../data/content.json';
+import { usePortfolio } from '../context/PortfolioContext';
 
 const ProjectCard = ({ project, index, onClick }) => {
   const isVideo = project.src && project.src.endsWith('.mp4');
@@ -59,7 +59,8 @@ const ProjectCard = ({ project, index, onClick }) => {
 const Projects = () => {
   const [activeIndex, setActiveIndex] = useState(null);
   
-  const projectsData = contentData.projects || [];
+  const { data } = usePortfolio();
+  const projectsData = data.projects || [];
 
   // Lock body scroll when modal is open
   useEffect(() => {

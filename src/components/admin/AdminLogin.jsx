@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Lock, Mail } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { Lock, Mail, AlertCircle } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../../firebase';
+import credentials from '../../data/admin-credentials.json';
 
 const AdminLogin = () => {
   const [email, setEmail] = useState('');
@@ -12,65 +15,67 @@ const AdminLogin = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    setError('');
     setLoading(true);
+    setError('');
+
+    // Check local credentials first (from admin-credentials.json)
+    if (email === credentials.email && password === credentials.password) {
+      localStorage.setItem('adminLoggedIn', 'true');
+      navigate('/admin/dashboard');
+      setLoading(false);
+      return;
+    }
 
     try {
-      const response = await fetch('/api/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password })
-      });
-
-      if (response.ok) {
-        localStorage.setItem('adminLoggedIn', 'true');
-        navigate('/admin/dashboard');
-      } else {
-        const data = await response.json();
-        setError(data.error || 'Invalid credentials.');
-      }
+      if (!auth) throw new Error('API key not valid');
+      await signInWithEmailAndPassword(auth, email, password);
+      // Set local storage so the dashboard doesn't kick us out
+      localStorage.setItem('adminLoggedIn', 'true');
+      navigate('/admin/dashboard');
     } catch (err) {
-      setError('Could not connect to local server. Make sure you are running this locally.');
+      console.error('Login error:', err);
+      // Check if it's because firebase is unconfigured
+      if (err.message.includes('API key not valid') || err.message.includes('authDomain')) {
+        setError('Firebase is not fully configured yet. Please provide your configuration keys.');
+      } else {
+        setError('Invalid credentials. Please try again.');
+      }
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen bg-background flex items-center justify-center p-6 selection:bg-primary selection:text-white">
-      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 -left-1/4 w-[50vw] h-[50vw] bg-primary/10 rounded-full blur-[100px]" />
-        <div className="absolute bottom-1/4 -right-1/4 w-[60vw] h-[60vw] bg-accent/5 rounded-full blur-[120px]" />
-      </div>
-
+    <div className="min-h-screen bg-background flex flex-col justify-center items-center p-4">
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="w-full max-w-md bg-surface border border-borderLine rounded-2xl p-8 shadow-2xl relative z-10"
+        className="bg-surface border border-borderLine p-8 rounded-2xl shadow-2xl max-w-md w-full relative overflow-hidden"
       >
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-display font-bold text-text">Admin Login</h1>
-          <p className="text-muted mt-2">Sign in to manage your local files</p>
+          <h2 className="text-3xl font-display font-bold text-text mb-2">Admin Login</h2>
+          <p className="text-muted text-sm">Sign in to manage your live portfolio</p>
         </div>
 
         {error && (
-          <div className="bg-red-500/10 border border-red-500/50 text-red-500 p-3 rounded-xl mb-6 text-sm text-center">
-            {error}
-          </div>
+          <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} className="mb-6 bg-red-500/10 border border-red-500/30 rounded-xl p-4 flex items-start gap-3">
+            <AlertCircle className="text-red-500 shrink-0 mt-0.5" size={18} />
+            <p className="text-red-500 text-sm">{error}</p>
+          </motion.div>
         )}
 
-        <form onSubmit={handleLogin} className="space-y-5">
+        <form onSubmit={handleLogin} className="space-y-5 relative z-10">
           <div>
             <label className="block text-sm font-medium text-muted mb-2">Email</label>
             <div className="relative">
-              <Mail className="absolute left-3 top-1/2 -translate-y-1/2 text-muted w-5 h-5" />
+              <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-muted" size={18} />
               <input 
                 type="email" 
+                required
+                className="w-full bg-background border border-borderLine rounded-xl py-3 pl-12 pr-4 text-text focus:outline-none focus:border-primary/50 transition-colors"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full bg-background border border-borderLine text-text rounded-xl py-3 pl-10 pr-4 focus:outline-none focus:border-primary transition-colors"
                 placeholder="admin@example.com"
-                required
               />
             </div>
           </div>
@@ -78,14 +83,14 @@ const AdminLogin = () => {
           <div>
             <label className="block text-sm font-medium text-muted mb-2">Password</label>
             <div className="relative">
-              <Lock className="absolute left-3 top-1/2 -translate-y-1/2 text-muted w-5 h-5" />
+              <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-muted" size={18} />
               <input 
                 type="password" 
+                required
+                className="w-full bg-background border border-borderLine rounded-xl py-3 pl-12 pr-4 text-text focus:outline-none focus:border-primary/50 transition-colors"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full bg-background border border-borderLine text-text rounded-xl py-3 pl-10 pr-4 focus:outline-none focus:border-primary transition-colors"
                 placeholder="••••••••"
-                required
               />
             </div>
           </div>
@@ -93,14 +98,14 @@ const AdminLogin = () => {
           <button 
             type="submit" 
             disabled={loading}
-            className="w-full bg-primary text-white font-semibold py-3 rounded-xl shadow-lg hover:shadow-primary/30 transition-all disabled:opacity-50 mt-4"
+            className="w-full bg-primary/20 hover:bg-primary/30 text-primary border border-primary/30 rounded-xl py-3.5 font-semibold transition-all disabled:opacity-50"
           >
-            {loading ? 'Signing in...' : 'Sign In'}
+            {loading ? 'Authenticating...' : 'Sign In'}
           </button>
         </form>
         
-        <div className="mt-6 text-center text-xs text-muted">
-           <p>Note: Secured by local credentials. The dashboard is disabled on Vercel.</p>
+        <div className="mt-8 text-center">
+          <p className="text-xs text-muted">Secured by Firebase Authentication</p>
         </div>
       </motion.div>
     </div>

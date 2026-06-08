@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Award, Trophy, Star, X, ChevronLeft, ChevronRight, Maximize2 } from 'lucide-react';
-import contentData from '../data/content.json';
+import { usePortfolio } from '../context/PortfolioContext';
 
 const IconMap = {
   'Trophy': { component: Trophy, color: 'text-primary' },
@@ -28,35 +28,29 @@ const AwardCard = ({ title, event, desc, iconName, image, index, onClick }) => {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-surface via-surface/40 to-transparent opacity-80"></div>
         
-        {/* Hover Expand Icon */}
-        <div className="absolute top-4 right-4 w-10 h-10 rounded-full bg-black/50 backdrop-blur-md flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 border border-white/10">
-          <Maximize2 size={18} />
+        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-[2px]">
+          <div className="w-12 h-12 rounded-full bg-primary/90 flex items-center justify-center text-white shadow-xl transform scale-90 group-hover:scale-100 transition-all duration-300">
+            <Maximize2 size={20} />
+          </div>
         </div>
       </div>
       
-      <div className="p-8 pt-4 flex-grow flex flex-col relative z-10">
-        <div className="flex items-center space-x-4 mb-5 transform -translate-y-10">
-          <div className="w-16 h-16 rounded-2xl bg-surface border-2 border-borderLine flex items-center justify-center shrink-0 shadow-xl group-hover:border-primary/50 transition-colors">
-            <IconComponent className={`w-8 h-8 ${IconData.color} stroke-[1.5]`} />
-          </div>
+      <div className="p-8 flex flex-col flex-grow relative">
+        <div className="absolute -top-10 right-8 w-16 h-16 bg-background rounded-2xl shadow-xl flex items-center justify-center border border-borderLine group-hover:border-primary/50 group-hover:-translate-y-2 transition-all duration-300">
+          <IconComponent size={28} className={IconData.color} />
         </div>
-        
-        <div className="-mt-8">
-          <h4 className="text-xl font-bold text-text leading-tight group-hover:text-primary transition-colors">{title}</h4>
-          <span className="text-xs font-semibold tracking-wider text-muted uppercase mt-2 block mb-4">{event}</span>
-        </div>
-        <div className="text-muted text-sm leading-relaxed flex-grow whitespace-pre-line">
-          {desc}
-        </div>
+        <h4 className="text-xl font-bold text-text mb-3 pr-16">{title}</h4>
+        <p className="text-primary text-sm font-medium mb-4">{event}</p>
+        <p className="text-muted text-sm leading-relaxed mb-6 flex-grow">{desc}</p>
       </div>
     </motion.div>
   );
 };
 
 const Awards = () => {
+  const { data } = usePortfolio();
+  const awardsData = data?.awards || [];
   const [activeIndex, setActiveIndex] = useState(null);
-
-  const awardsData = contentData.awards || [];
 
   // Lock body scroll when modal is open
   useEffect(() => {

@@ -35,16 +35,16 @@ const AwardsEditor = ({ data, onChange, onSave, saving, toBase64 }) => {
   const handleUploadFile = async (index, file) => {
     setUploadingIdx(index);
     try {
-      const base64 = await toBase64(file);
-      const res = await fetch('/api/upload', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: file.name, base64 })
-      });
-      const result = await res.json();
-      if (result.url) {
+      const { storage } = await import('../../firebase');
+      const { ref, uploadBytes, getDownloadURL } = await import('firebase/storage');
+      
+      const storageRef = ref(storage, `uploads/awards/${Date.now()}_${file.name}`);
+      const snapshot = await uploadBytes(storageRef, file);
+      const url = await getDownloadURL(snapshot.ref);
+      
+      if (url) {
         const updated = [...data];
-        updated[index].image = result.url;
+        updated[index].image = url;
         onChange(updated);
       }
     } catch (err) {

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Settings, Printer, Users, GraduationCap, Briefcase, Rocket, Cpu, Code, Box, BookOpen } from 'lucide-react';
-import contentData from '../data/content.json';
+import { usePortfolio } from '../context/PortfolioContext';
 
 // Animated counter
 const Counter = ({ end, suffix = '', label }) => {
@@ -57,7 +57,8 @@ const IconMap = {
 };
 
 const About = () => {
-  const aboutData = contentData.about;
+  const { data } = usePortfolio();
+  const aboutData = data.about;
 
   const highlights = [
     {

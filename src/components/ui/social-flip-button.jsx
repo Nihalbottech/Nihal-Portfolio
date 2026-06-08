@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaLinkedin, FaWhatsapp, FaInstagram } from 'react-icons/fa';
 import { SiInstructables, SiThingiverse } from 'react-icons/si';
-import contentData from '../../data/content.json';
+import { usePortfolio } from '../../context/PortfolioContext';
 
 const IconMap = {
   FaLinkedin: <FaLinkedin size={26} />,
@@ -12,7 +12,8 @@ const IconMap = {
 };
 
 export default function SocialFlipButton() {
-  const socialLinks = contentData.socials;
+  const { data } = usePortfolio();
+  const socialLinks = data?.socials || [];
 
   return (
     <div className="flex flex-wrap items-center justify-center gap-6">

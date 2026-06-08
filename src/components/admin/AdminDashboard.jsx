@@ -49,17 +49,14 @@ const AdminDashboard = () => {
     setMessage({ type: '', text: '' });
 
     try {
-      const response = await fetch('/api/save-content', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(content)
-      });
+      const { doc, setDoc } = await import('firebase/firestore');
+      const { db } = await import('../../firebase');
+      
+      if (!db) throw new Error('Firebase is not configured. Cannot save changes.');
 
-      if (!response.ok) {
-        throw new Error('Failed to save to local file');
-      }
+      await setDoc(doc(db, 'portfolio', 'content'), content);
 
-      setMessage({ type: 'success', text: 'All changes saved to content.json! Check your main site.' });
+      setMessage({ type: 'success', text: 'All changes saved to your live portfolio!' });
       
       // Auto dismiss message
       setTimeout(() => setMessage({ type: '', text: '' }), 5000);

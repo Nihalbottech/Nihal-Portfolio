@@ -17,8 +17,10 @@ import Contact from './sections/Contact';
 // Admin Components
 import AdminLogin from './components/admin/AdminLogin';
 import AdminDashboard from './components/admin/AdminDashboard';
+import { PortfolioProvider, usePortfolio } from './context/PortfolioContext';
 
-function Portfolio() {
+function PortfolioContent() {
+  const { loading } = usePortfolio();
   const [activeSection, setActiveSection] = useState('hero');
 
   useEffect(() => {
@@ -36,7 +38,18 @@ function Portfolio() {
     return () => {
       sections.forEach(section => observer.unobserve(section));
     };
-  }, []);
+  }, [loading]);
+
+  if (loading) {
+    return (
+      <RevealLoader 
+        text="LOADING PORTFOLIO" 
+        bgColors={["#6B7280", "#4B5563"]}
+        staggerOrder="center-out"
+        textFadeDelay={0.5}
+      />
+    );
+  }
 
   return (
     <>
@@ -78,13 +91,15 @@ function Portfolio() {
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Portfolio />} />
-        <Route path="/admin" element={<AdminLogin />} />
-        <Route path="/admin/dashboard" element={<AdminDashboard />} />
-      </Routes>
-    </Router>
+    <PortfolioProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<PortfolioContent />} />
+          <Route path="/admin" element={<AdminLogin />} />
+          <Route path="/admin/dashboard" element={<AdminDashboard />} />
+        </Routes>
+      </Router>
+    </PortfolioProvider>
   );
 }
 

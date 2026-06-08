@@ -13,15 +13,15 @@ const HeroEditor = ({ data, onChange, onSave, saving, toBase64 }) => {
       setPreview(URL.createObjectURL(file));
       
       try {
-        const base64 = await toBase64(file);
-        const res = await fetch('/api/upload', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name: file.name, base64 })
-        });
-        const result = await res.json();
-        if (result.url) {
-          onChange({ ...data, profileImgUrl: result.url }); // Note: We actually mapped hero image directly in Hero.jsx to profile.png, but leaving this for future proofing.
+        const { storage } = await import('../../firebase');
+        const { ref, uploadBytes, getDownloadURL } = await import('firebase/storage');
+        
+        const storageRef = ref(storage, `uploads/${Date.now()}_${file.name}`);
+        const snapshot = await uploadBytes(storageRef, file);
+        const url = await getDownloadURL(snapshot.ref);
+        
+        if (url) {
+          onChange({ ...data, profileImgUrl: url }); 
         }
       } catch (err) {
         console.error('Failed to upload image', err);

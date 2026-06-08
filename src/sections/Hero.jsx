@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Box, Layout, Download } from 'lucide-react';
 import { FaInstagram, FaLinkedinIn } from 'react-icons/fa';
-import contentData from '../data/content.json';
+import { usePortfolio } from '../context/PortfolioContext';
 
 import profileImg from '../assets/Profile/Nihal.png';
 import companyLogo from '../assets/Profile/Untitled48_20260425154829.png';
@@ -10,7 +10,8 @@ import instructablesLogo from '../assets/Awards/Logos/jhgb.png';
 import resumePdf from '../assets/Resume/Mohammed_Nihal_Final_Resume.pdf';
 
 const Hero = () => {
-  const heroData = contentData.hero;
+  const { data } = usePortfolio();
+  const heroData = data.hero;
   const displayProfileImg = heroData.profileImgUrl || profileImg;
 
   return (
