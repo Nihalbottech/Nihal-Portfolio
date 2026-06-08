@@ -43,7 +43,7 @@ function PortfolioContent() {
   if (loading) {
     return (
       <RevealLoader 
-        text="LOADING PORTFOLIO" 
+        text="MOHAMMED NIHAL M" 
         bgColors={["#6B7280", "#4B5563"]}
         staggerOrder="center-out"
         textFadeDelay={0.5}
