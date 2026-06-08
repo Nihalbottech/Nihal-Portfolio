@@ -35,17 +35,13 @@ const AwardsEditor = ({ data, onChange, onSave, saving, toBase64 }) => {
   const handleUploadFile = async (index, file) => {
     setUploadingIdx(index);
     try {
-      const { storage } = await import('../../firebase');
-      const { ref, uploadBytes, getDownloadURL } = await import('firebase/storage');
-      
-      const storageRef = ref(storage, `uploads/awards/${Date.now()}_${file.name}`);
-      const snapshot = await uploadBytes(storageRef, file);
-      const url = await getDownloadURL(snapshot.ref);
-      
-      if (url) {
-        const updated = [...data];
-        updated[index].image = url;
-        onChange(updated);
+      if (toBase64) {
+        const url = await toBase64(file);
+        if (url) {
+          const updated = [...data];
+          updated[index].image = url;
+          onChange(updated);
+        }
       }
     } catch (err) {
       console.error('Failed to upload', err);
