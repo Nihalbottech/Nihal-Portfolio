@@ -4,7 +4,6 @@ import { Lock, Mail, AlertCircle } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../firebase';
-import credentials from '../../data/admin-credentials.json';
 
 const AdminLogin = () => {
   const [email, setEmail] = useState('');
@@ -17,14 +16,6 @@ const AdminLogin = () => {
     e.preventDefault();
     setLoading(true);
     setError('');
-
-    // Check local credentials first (from admin-credentials.json)
-    if (email === credentials.email && password === credentials.password) {
-      localStorage.setItem('adminLoggedIn', 'true');
-      navigate('/admin/dashboard');
-      setLoading(false);
-      return;
-    }
 
     try {
       if (!auth) throw new Error('API key not valid');
