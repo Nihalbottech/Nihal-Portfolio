@@ -167,11 +167,11 @@ const ExpoAttended = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-[100] flex flex-col md:flex-row items-center justify-center bg-black/95 backdrop-blur-md p-4 md:p-8"
+            className="fixed inset-0 z-[100] flex flex-col md:flex-row items-center justify-start md:justify-center bg-black/95 backdrop-blur-md p-4 md:p-8 overflow-y-auto pt-24 md:pt-8"
             onClick={() => setActiveIndex(null)}
           >
             <button
-              className="absolute top-6 right-6 w-12 h-12 rounded-full bg-white/10 hover:bg-red-500/90 border border-white/20 hover:border-red-500 flex items-center justify-center text-white transition-all pointer-events-auto shadow-lg z-[110]"
+              className="fixed top-6 right-6 md:top-8 md:right-8 w-12 h-12 rounded-full bg-white/10 hover:bg-red-500/90 border border-white/20 hover:border-red-500 flex items-center justify-center text-white transition-all pointer-events-auto shadow-lg z-[120]"
               onClick={(e) => { e.stopPropagation(); setActiveIndex(null); }}
               title="Close"
             >
@@ -184,14 +184,14 @@ const ExpoAttended = () => {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: -10 }}
               transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-              className="relative w-full md:w-auto h-auto max-w-[95vw] md:max-w-[60vw] max-h-[75vh] overflow-y-auto rounded-2xl shadow-2xl border border-white/20 flex flex-col items-center bg-black/50 z-[105] custom-scrollbar"
+              className="relative w-full md:w-auto h-auto max-w-[100vw] md:max-w-[60vw] max-h-none md:max-h-[75vh] overflow-y-visible md:overflow-y-auto rounded-2xl shadow-2xl border border-white/20 flex flex-col items-center bg-black/50 z-[105] custom-scrollbar shrink-0"
               onClick={(e) => e.stopPropagation()}
             >
               {activeExpo.videoSrc ? (
                 <video
                   src={activeExpo.videoSrc}
                   autoPlay loop muted playsInline
-                  className="w-auto h-auto max-w-full max-h-[75vh] object-contain rounded-2xl"
+                  className="w-auto h-auto max-w-full max-h-[60vh] md:max-h-[75vh] object-contain rounded-2xl"
                 />
               ) : (
                 <div className="flex flex-col gap-4 p-4 w-full items-center">
@@ -200,7 +200,7 @@ const ExpoAttended = () => {
                       key={idx}
                       src={img}
                       alt={activeExpo.title}
-                      className="w-auto h-auto max-w-full max-h-[70vh] object-contain rounded-xl"
+                      className="w-auto h-auto max-w-full max-h-[60vh] md:max-h-[70vh] object-contain rounded-xl"
                     />
                   ))}
                 </div>
@@ -212,12 +212,12 @@ const ExpoAttended = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
               onClick={(e) => e.stopPropagation()}
-              className="w-full md:w-[400px] mt-6 md:mt-0 md:ml-8 bg-surface/10 backdrop-blur-xl border border-white/20 rounded-2xl p-8 z-[105]"
+              className="w-full md:w-[400px] mt-6 md:mt-0 md:ml-8 bg-surface/10 backdrop-blur-xl border border-white/20 rounded-2xl p-6 md:p-8 z-[105] shrink-0 mb-8 md:mb-0"
             >
-              <h3 className="text-3xl font-display font-bold text-white mb-2">{activeExpo.title}</h3>
+              <h3 className="text-2xl md:text-3xl font-display font-bold text-white mb-2">{activeExpo.title}</h3>
               {activeExpo.date && <p className="text-primary font-semibold tracking-wider text-sm mb-1">{activeExpo.date}</p>}
               {activeExpo.association && <p className="text-white/50 text-xs mb-6 tracking-wide">{activeExpo.association}</p>}
-              {activeExpo.quote && <p className="text-white/80 italic text-lg mb-6 border-l-2 border-primary pl-4">{activeExpo.quote}</p>}
+              {activeExpo.quote && <p className="text-white/80 italic text-base md:text-lg mb-6 border-l-2 border-primary pl-4">{activeExpo.quote}</p>}
               {activeExpo.description && <p className="text-white/60 leading-relaxed text-sm">{activeExpo.description}</p>}
             </motion.div>
           </motion.div>

@@ -115,12 +115,12 @@ const Awards = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#0B1220]/95 backdrop-blur-md p-4 md:p-8"
+            className="fixed inset-0 z-[100] flex flex-col items-center justify-start md:justify-center bg-[#0B1220]/95 backdrop-blur-md p-4 md:p-8 overflow-y-auto pt-24 md:pt-8"
             onClick={() => setActiveIndex(null)}
           >
             {/* Top Right Close */}
             <button 
-              className="absolute top-6 right-6 w-12 h-12 rounded-full bg-surface/50 hover:bg-red-500/90 border border-borderLine hover:border-red-500 flex items-center justify-center text-muted hover:text-white transition-all pointer-events-auto shadow-lg z-[110]"
+              className="fixed top-6 right-6 md:top-8 md:right-8 w-12 h-12 rounded-full bg-surface/50 hover:bg-red-500/90 border border-borderLine hover:border-red-500 flex items-center justify-center text-muted hover:text-white transition-all pointer-events-auto shadow-lg z-[120]"
               onClick={(e) => {
                 e.stopPropagation();
                 setActiveIndex(null);
@@ -130,7 +130,7 @@ const Awards = () => {
               <X size={24} strokeWidth={2} />
             </button>
 
-            <div className="flex flex-col md:flex-row items-center justify-center z-[105] max-h-full" onClick={(e) => e.stopPropagation()}>
+            <div className="flex flex-col md:flex-row items-center justify-center z-[105] max-h-none md:max-h-full w-full pb-32 md:pb-0" onClick={(e) => e.stopPropagation()}>
               {/* Media Container */}
               <motion.div 
                 key={`media-${activeIndex}`}
@@ -138,12 +138,12 @@ const Awards = () => {
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95, y: -10 }}
                 transition={{ type: "spring", damping: 25, stiffness: 300 }}
-                className="relative w-auto h-auto max-w-[95vw] md:max-w-[60vw] max-h-[75vh] rounded-2xl overflow-hidden shadow-2xl border border-white/20 flex flex-col items-center justify-center bg-black/50"
+                className="relative w-auto h-auto max-w-[100vw] md:max-w-[60vw] max-h-none md:max-h-[75vh] rounded-2xl overflow-visible md:overflow-hidden shadow-2xl border border-white/20 flex flex-col items-center justify-center bg-black/50 shrink-0"
               >
                 <img 
                   src={awardsData[activeIndex].image} 
                   alt={awardsData[activeIndex].title} 
-                  className="w-auto h-auto max-w-full max-h-[75vh] object-contain rounded-2xl"
+                  className="w-auto h-auto max-w-full max-h-[60vh] md:max-h-[75vh] object-contain rounded-2xl"
                 />
               </motion.div>
 
@@ -153,9 +153,9 @@ const Awards = () => {
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
-                className="w-full md:w-[400px] mt-6 md:mt-0 md:ml-8 bg-surface/10 backdrop-blur-xl border border-white/20 rounded-2xl p-8 z-[105]"
+                className="w-full md:w-[400px] mt-6 md:mt-0 md:ml-8 bg-surface/10 backdrop-blur-xl border border-white/20 rounded-2xl p-6 md:p-8 z-[105] shrink-0"
               >
-                <h3 className="text-3xl font-display font-bold text-white mb-2">{awardsData[activeIndex].title}</h3>
+                <h3 className="text-2xl md:text-3xl font-display font-bold text-white mb-2">{awardsData[activeIndex].title}</h3>
                 <p className="text-primary font-semibold tracking-wider text-sm mb-6 uppercase">{awardsData[activeIndex].event}</p>
                 {awardsData[activeIndex].desc && (
                   <div className="text-white/80 leading-relaxed text-sm border-l-2 border-primary/50 pl-4">
@@ -167,7 +167,7 @@ const Awards = () => {
 
             {/* Elegant Bottom Pagination Controls */}
             <div 
-              className="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center space-x-6 bg-surface/80 backdrop-blur-lg border border-borderLine px-6 py-3 rounded-full shadow-xl z-[110]"
+              className="fixed bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 flex items-center space-x-6 bg-surface/90 backdrop-blur-lg border border-borderLine px-6 py-3 rounded-full shadow-2xl z-[120]"
               onClick={(e) => e.stopPropagation()}
             >
               <button 
