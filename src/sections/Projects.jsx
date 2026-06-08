@@ -121,7 +121,7 @@ const Projects = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-[100] flex flex-col md:flex-row items-center justify-center bg-black/95 backdrop-blur-md p-4 md:p-8"
+            className="fixed inset-0 z-[100] flex flex-col md:flex-row items-center justify-start md:justify-center bg-black/95 backdrop-blur-md p-4 md:p-8 overflow-y-auto pt-24 md:pt-8"
             onClick={() => setActiveIndex(null)}
           >
             
@@ -145,7 +145,7 @@ const Projects = () => {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: -10 }}
               transition={{ type: "spring", damping: 25, stiffness: 300 }}
-              className="relative w-full md:w-auto h-auto max-w-[95vw] md:max-w-[70vw] max-h-[75vh] overflow-y-auto rounded-2xl shadow-2xl border border-white/20 flex flex-col items-center bg-black/50 z-[105] custom-scrollbar"
+              className="relative w-full md:w-auto h-auto max-w-[100vw] md:max-w-[70vw] max-h-none md:max-h-[75vh] overflow-y-visible md:overflow-y-auto rounded-2xl shadow-2xl border border-white/20 flex flex-col items-center bg-black/50 z-[105] custom-scrollbar shrink-0"
               onClick={(e) => e.stopPropagation()}
             >
               {activeProject.images ? (
@@ -155,7 +155,7 @@ const Projects = () => {
                       key={idx}
                       src={img} 
                       alt={activeProject.title || `Project Image ${idx + 1}`} 
-                      className="w-auto h-auto max-w-full max-h-[70vh] object-contain rounded-xl"
+                      className="w-auto h-auto max-w-full max-h-[60vh] md:max-h-[70vh] object-contain rounded-xl"
                     />
                   ))}
                 </div>
@@ -167,14 +167,14 @@ const Projects = () => {
                     loop
                     muted
                     playsInline
-                    className="w-auto h-auto max-w-full max-h-[75vh] object-contain rounded-xl"
+                    className="w-auto h-auto max-w-full max-h-[60vh] md:max-h-[75vh] object-contain rounded-xl"
                   />
                   {activeProject.extraImages && activeProject.extraImages.map((img, idx) => (
                     <img 
                       key={idx}
                       src={img} 
                       alt={activeProject.title || `Project Image ${idx + 1}`} 
-                      className="w-auto h-auto max-w-full max-h-[70vh] object-contain rounded-xl"
+                      className="w-auto h-auto max-w-full max-h-[60vh] md:max-h-[70vh] object-contain rounded-xl"
                     />
                   ))}
                 </div>
@@ -185,13 +185,13 @@ const Projects = () => {
                   loop
                   muted
                   playsInline
-                  className="w-auto h-auto max-w-full max-h-[75vh] object-contain rounded-xl"
+                  className="w-auto h-auto max-w-full max-h-[60vh] md:max-h-[75vh] object-contain rounded-xl"
                 />
               ) : (
                 <img 
                   src={activeProject.src} 
                   alt={`Project ${activeIndex}`} 
-                  className="w-auto h-auto max-w-full max-h-[75vh] object-contain rounded-xl"
+                  className="w-auto h-auto max-w-full max-h-[60vh] md:max-h-[75vh] object-contain rounded-xl"
                 />
               )}
             </motion.div>
@@ -203,12 +203,12 @@ const Projects = () => {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
                 onClick={(e) => e.stopPropagation()}
-                className="w-full md:w-[400px] mt-6 md:mt-0 md:ml-8 bg-surface/10 backdrop-blur-xl border border-white/20 rounded-2xl p-8 z-[105]"
+                className="w-full md:w-[400px] mt-6 md:mt-0 md:ml-8 bg-surface/10 backdrop-blur-xl border border-white/20 rounded-2xl p-6 md:p-8 z-[105] shrink-0 mb-8 md:mb-0"
               >
-                <h3 className="text-3xl font-display font-bold text-white mb-2">{activeProject.title}</h3>
+                <h3 className="text-2xl md:text-3xl font-display font-bold text-white mb-2">{activeProject.title}</h3>
                 {activeProject.date && <p className="text-primary font-semibold tracking-wider text-sm mb-1">{activeProject.date}</p>}
                 {activeProject.association && <p className="text-white/50 text-xs mb-6 tracking-wide">{activeProject.association}</p>}
-                {activeProject.quote && <p className="text-white/80 italic text-lg mb-6 border-l-2 border-primary pl-4">{activeProject.quote}</p>}
+                {activeProject.quote && <p className="text-white/80 italic text-base md:text-lg mb-6 border-l-2 border-primary pl-4">{activeProject.quote}</p>}
                 {activeProject.description && <p className="text-white/60 leading-relaxed text-sm">{activeProject.description}</p>}
               </motion.div>
             )}
