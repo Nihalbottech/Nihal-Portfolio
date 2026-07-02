@@ -192,7 +192,7 @@ const Hero = () => {
               }}
               className="absolute top-4 -right-4 bg-background/80 backdrop-blur-md border border-borderLine px-4 py-2 rounded-xl shadow-xl z-20"
             >
-              <span className="text-xs font-bold text-success tracking-widest uppercase">30+ Projects</span>
+              <span className="text-xs font-bold text-success tracking-widest uppercase">{heroData.projectCount || "30+"} Projects</span>
             </motion.div>
 
             {/* Floating Badge */}

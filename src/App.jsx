@@ -78,9 +78,20 @@ function PortfolioContent() {
       </main>
       
       <footer className="py-8 bg-surface text-center border-t border-borderLine relative z-10">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-6 flex flex-col items-center justify-center gap-1.5">
           <p className="text-sm text-muted font-medium tracking-wide">
             © {new Date().getFullYear()} Nihal. Engineering Portfolio.
+          </p>
+          <p className="text-xs text-muted/70 font-medium">
+            Made by{' '}
+            <a 
+              href="https://www.instagram.com/shadin_kappzzz/?__pwa=1" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="text-text hover:text-primary transition-all duration-200 font-bold hover:underline"
+            >
+              Shadin_kappzzz
+            </a>
           </p>
         </div>
       </footer>

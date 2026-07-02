@@ -1,6 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { doc, getDoc, onSnapshot } from 'firebase/firestore';
-import { db } from '../firebase';
+import { supabase } from '../supabase';
 import defaultContent from '../data/content.json';
 
 const PortfolioContext = createContext();
@@ -15,53 +14,81 @@ export const PortfolioProvider = ({ children }) => {
   useEffect(() => {
     let isMounted = true;
     let fallbackTimeout;
+    let channel;
 
-    // Attempt to connect to Firestore
+    // Attempt to connect to Supabase
     try {
-      if (!db) {
-        // Silently fallback to local data if Firebase isn't configured
+      if (!supabase) {
+        // Silently fallback to local data if Supabase isn't configured
         if (isMounted) setLoading(false);
         return;
       }
-      
-      const docRef = doc(db, 'portfolio', 'content');
-      
-      // Fallback timeout: if Firebase takes more than 2 seconds, use local fallback
+
+      // Fallback timeout: if Supabase takes more than 2 seconds, use local fallback
       fallbackTimeout = setTimeout(() => {
         if (isMounted) {
-          console.warn("Firebase timeout (using local fallback).");
+          console.warn("Supabase timeout (using local fallback).");
           setLoading(false);
         }
       }, 2000);
 
-      // Use onSnapshot for live real-time updates!
-      const unsubscribe = onSnapshot(docRef, (docSnap) => {
-        clearTimeout(fallbackTimeout);
-        if (isMounted) {
-          if (docSnap.exists()) {
-            setData(docSnap.data());
-          } else {
-            console.warn("No data found in Firebase, using local fallback.");
+      // Fetch the initial portfolio data
+      const fetchInitialData = async () => {
+        try {
+          const { data: row, error: fetchError } = await supabase
+            .from('portfolio')
+            .select('data')
+            .eq('id', 'content')
+            .maybeSingle();
+
+          clearTimeout(fallbackTimeout);
+
+          if (fetchError) throw fetchError;
+
+          if (isMounted) {
+            if (row && row.data) {
+              setData(row.data);
+            } else {
+              console.warn("No data found in Supabase, using local fallback.");
+            }
+            setLoading(false);
           }
-          setLoading(false);
+        } catch (err) {
+          clearTimeout(fallbackTimeout);
+          if (isMounted) {
+            console.error("Supabase connection error (using local fallback): ", err.message);
+            setError(err.message);
+            setLoading(false);
+          }
         }
-      }, (err) => {
-        clearTimeout(fallbackTimeout);
-        if (isMounted) {
-          console.error("Firebase connection error (using local fallback): ", err.message);
-          setError(err.message);
-          setLoading(false);
-        }
-      });
+      };
+
+      fetchInitialData();
+
+      // Subscribe to real-time changes
+      channel = supabase
+        .channel('portfolio-changes')
+        .on(
+          'postgres_changes',
+          { event: '*', schema: 'public', table: 'portfolio', filter: 'id=eq.content' },
+          (payload) => {
+            if (isMounted && payload.new && payload.new.data) {
+              setData(payload.new.data);
+            }
+          }
+        )
+        .subscribe();
 
       return () => {
         isMounted = false;
         clearTimeout(fallbackTimeout);
-        unsubscribe();
+        if (channel) {
+          supabase.removeChannel(channel);
+        }
       };
     } catch (err) {
       if (isMounted) {
-        console.warn("Firebase not configured correctly, using local fallback.", err);
+        console.warn("Supabase not configured correctly, using local fallback.", err);
         setLoading(false);
       }
     }

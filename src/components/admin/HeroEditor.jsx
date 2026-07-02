@@ -31,7 +31,7 @@ const HeroEditor = ({ data, onChange, onSave, saving, toBase64 }) => {
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="bg-white/80 backdrop-blur-md border border-gray-200 shadow-sm rounded-3xl p-6 md:p-8">
           <h2 className="text-xl font-bold mb-6 text-gray-900">Hero Section</h2>
           <div className="space-y-6">
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
               <div>
                 <label className="block text-sm font-semibold text-gray-600 mb-2">First Name</label>
                 <input type="text" value={data.firstName || ''} onChange={(e) => onChange({...data, firstName: e.target.value})} className="w-full bg-gray-50 border border-gray-200 text-gray-900 rounded-xl py-3 px-4 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all font-medium" />
@@ -39,6 +39,10 @@ const HeroEditor = ({ data, onChange, onSave, saving, toBase64 }) => {
               <div>
                 <label className="block text-sm font-semibold text-gray-600 mb-2">Last Name (Highlighted)</label>
                 <input type="text" value={data.lastName || ''} onChange={(e) => onChange({...data, lastName: e.target.value})} className="w-full bg-gray-50 border border-gray-200 text-gray-900 rounded-xl py-3 px-4 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all font-medium" />
+              </div>
+              <div>
+                <label className="block text-sm font-semibold text-gray-600 mb-2">Project Count Badge</label>
+                <input type="text" value={data.projectCount || ''} placeholder="e.g. 25+" onChange={(e) => onChange({...data, projectCount: e.target.value})} className="w-full bg-gray-50 border border-gray-200 text-gray-900 rounded-xl py-3 px-4 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all font-medium" />
               </div>
             </div>
 

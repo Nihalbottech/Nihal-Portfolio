@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Lock, Mail, AlertCircle } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../../firebase';
+import { supabase } from '../../supabase';
 
 const AdminLogin = () => {
   const [email, setEmail] = useState('');
@@ -18,18 +17,24 @@ const AdminLogin = () => {
     setError('');
 
     try {
-      if (!auth) throw new Error('API key not valid');
-      await signInWithEmailAndPassword(auth, email, password);
+      if (!supabase) throw new Error('Supabase is not configured yet. Please provide your VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY in your .env file.');
+      
+      const { data, error: authError } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+
+      if (authError) throw authError;
+
       // Set local storage so the dashboard doesn't kick us out
       localStorage.setItem('adminLoggedIn', 'true');
       navigate('/admin/dashboard');
     } catch (err) {
       console.error('Login error:', err);
-      // Check if it's because firebase is unconfigured
-      if (err.message.includes('API key not valid') || err.message.includes('authDomain')) {
-        setError('Firebase is not fully configured yet. Please provide your configuration keys.');
+      if (err.message.includes('not configured')) {
+        setError(err.message);
       } else {
-        setError('Invalid credentials. Please try again.');
+        setError('Invalid credentials or email not confirmed. Please try again.');
       }
     } finally {
       setLoading(false);
@@ -96,7 +101,7 @@ const AdminLogin = () => {
         </form>
         
         <div className="mt-8 text-center">
-          <p className="text-xs text-muted">Secured by Firebase Authentication</p>
+          <p className="text-xs text-muted">Secured by Supabase Authentication</p>
         </div>
       </motion.div>
     </div>

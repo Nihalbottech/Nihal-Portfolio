@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Save, Loader2, ShieldCheck, KeyRound } from 'lucide-react';
+import { supabase } from '../../supabase';
 
 const SecurityEditor = () => {
   const [email, setEmail] = useState('');
@@ -9,8 +10,8 @@ const SecurityEditor = () => {
   const [message, setMessage] = useState({ type: '', text: '' });
 
   const handleSave = async () => {
-    if (!email || !password) {
-      setMessage({ type: 'error', text: 'Both email and password are required.' });
+    if (!email && !password) {
+      setMessage({ type: 'error', text: 'Please enter a new email or password to update.' });
       return;
     }
 
@@ -18,17 +19,24 @@ const SecurityEditor = () => {
     setMessage({ type: '', text: '' });
 
     try {
-      const response = await fetch('/api/update-credentials', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password })
-      });
+      if (!supabase) throw new Error('Supabase is not configured. Cannot update credentials.');
 
-      if (!response.ok) {
-        throw new Error('Failed to update credentials');
+      const updateData = {};
+      if (email) updateData.email = email;
+      if (password) updateData.password = password;
+
+      const { error } = await supabase.auth.updateUser(updateData);
+
+      if (error) {
+        throw error;
       }
 
-      setMessage({ type: 'success', text: 'Admin credentials updated successfully! You will use these to log in next time.' });
+      let successMsg = 'Admin credentials updated successfully!';
+      if (email) {
+        successMsg += ' Please check your email to confirm the change.';
+      }
+
+      setMessage({ type: 'success', text: successMsg });
       
       // Clear fields after success
       setEmail('');
@@ -37,7 +45,7 @@ const SecurityEditor = () => {
       setTimeout(() => setMessage({ type: '', text: '' }), 5000);
     } catch (err) {
       console.error(err);
-      setMessage({ type: 'error', text: 'Failed to update credentials. Ensure the local server is running.' });
+      setMessage({ type: 'error', text: `Failed to update credentials: ${err.message}` });
     } finally {
       setSaving(false);
     }
@@ -53,7 +61,7 @@ const SecurityEditor = () => {
           </div>
           <div>
             <h2 className="text-xl font-bold text-gray-900">Admin Security</h2>
-            <p className="text-sm text-gray-500">Update your local dashboard login credentials</p>
+            <p className="text-sm text-gray-500">Update your portfolio login credentials</p>
           </div>
         </div>
 
@@ -66,8 +74,7 @@ const SecurityEditor = () => {
         <div className="bg-blue-50 border border-blue-100 rounded-xl p-4 mb-6 flex items-start space-x-3 text-blue-800 text-sm">
           <ShieldCheck className="w-5 h-5 flex-shrink-0 mt-0.5" />
           <p>
-            <strong>Your credentials are 100% secure.</strong> They are saved to a hidden local file that is strictly blocked from being uploaded to GitHub. 
-            Furthermore, the login API only exists on your local machine, completely disabling dashboard access on your live website.
+            <strong>Your credentials are secured by Supabase.</strong> Updating these fields directly updates your administrator account details in your live Supabase project. If you change your email, you will need to confirm the change via a confirmation email sent to both your old and new addresses.
           </p>
         </div>
 

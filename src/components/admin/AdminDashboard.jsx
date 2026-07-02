@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { LogOut, Loader2, Layout, FolderKanban, Award, User, Mail, Settings, ShieldCheck, KeyRound } from 'lucide-react';
+import { supabase } from '../../supabase';
+import { usePortfolio } from '../../context/PortfolioContext';
 import contentData from '../../data/content.json';
 import HeroEditor from './HeroEditor';
 import ProjectsEditor from './ProjectsEditor';
@@ -51,6 +53,7 @@ const toBase64 = file => new Promise((resolve, reject) => {
 });
 
 const AdminDashboard = () => {
+  const { data: liveData, loading: liveLoading } = usePortfolio();
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
@@ -68,10 +71,11 @@ const AdminDashboard = () => {
       return;
     }
 
-    // Clone initial data from content.json
-    setContent(JSON.parse(JSON.stringify(contentData)));
-    setLoading(false);
-  }, [navigate]);
+    if (!liveLoading && liveData) {
+      setContent(JSON.parse(JSON.stringify(liveData)));
+      setLoading(false);
+    }
+  }, [navigate, liveData, liveLoading]);
 
   const handleLogout = () => {
     localStorage.removeItem('adminLoggedIn');
@@ -83,12 +87,13 @@ const AdminDashboard = () => {
     setMessage({ type: '', text: '' });
 
     try {
-      const { doc, setDoc } = await import('firebase/firestore');
-      const { db } = await import('../../firebase');
-      
-      if (!db) throw new Error('Firebase is not configured. Cannot save changes.');
+      if (!supabase) throw new Error('Supabase is not configured. Cannot save changes.');
 
-      await setDoc(doc(db, 'portfolio', 'content'), content);
+      const { error } = await supabase
+        .from('portfolio')
+        .upsert({ id: 'content', data: content }, { onConflict: 'id' });
+
+      if (error) throw error;
 
       setMessage({ type: 'success', text: 'All changes saved to your live portfolio!' });
       
@@ -96,7 +101,7 @@ const AdminDashboard = () => {
       setTimeout(() => setMessage({ type: '', text: '' }), 5000);
     } catch (err) {
       console.error(err);
-      setMessage({ type: 'error', text: 'Failed to save changes.' });
+      setMessage({ type: 'error', text: `Failed to save changes: ${err.message}` });
     } finally {
       setSaving(false);
     }
